@@ -1,0 +1,176 @@
+/*
+TODO
+Barra lateral para todas las funcionalidades
+Barra de busqueda
+Eliminar Posts /// HECHO ( CREO )
+
+
+*/
+
+
+
+/* GENERAL */
+body {
+    background: #212121;
+    margin: 0;
+}
+
+h2 {
+    margin-left: 10px;
+    position: absolute;
+}
+
+input {
+    position: absolute;
+    font-size: 1.5rem;
+    width: 180px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+}
+
+
+
+textarea {
+    width: 245px;
+    height: 295px;
+    resize: none;
+}
+
+pre {
+    max-width: 245px;
+    white-space: pre-wrap;
+}
+
+/* ID */
+#resizable {
+    resize: both;
+}
+
+#barra {
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100vh;
+    width: 35px;
+    background: white;
+    
+}
+
+#posts {
+    margin-left: 52px;
+}
+
+/* CLASES */
+.bt_edit {
+    width: 50px;
+    height: 50px;
+    top: 12.5px;
+    right: 12.5px;
+    font-size: 2.5rem;
+    text-align: center;
+    color: gray;
+    border: none;
+    position: absolute;
+    transition: 0.5s;
+}
+.bt_edit:hover {
+    background: #bbbbbb;
+    border-radius: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    transform: rotateZ(-45deg);
+}
+
+.bt_sidebar {
+    display: flex;
+    padding: 5px;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: 0.5s;
+    background: #ffffff;
+    height: 30px;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.bt_sidebar:nth-child(1) img {
+    margin: auto;
+    transform: rotateZ(180deg);
+}
+
+.bt_sidebar:hover {
+    background: #bbbbbb;
+}
+
+.post {
+    position: relative;
+    background: #ffffff;
+    width: 278.5px;
+    height: 400px;
+    padding: 10px;
+    border-radius: 7.5px;
+    resize: none;
+    overflow: auto;
+    margin: 5px;
+    min-width: 210px;
+    max-width: 97.5vw;
+    min-height: 170px;
+    float: left;
+    float: top;
+    z-index: 2;
+    overflow:visible;
+}
+
+.post_head {
+    position: absolute;
+    width: 278.5px;
+    height: 75px;
+    margin: 0;
+    border-radius: 7.5px;
+    border: 1px solid #919191;
+    border-bottom: 0;
+    background: #eeeeee;
+}
+
+.post_content {
+    position: absolute;
+    width: 258.5px;
+    height: 300px;  
+    margin: 0;
+    margin-top: 77px;
+    border-radius: 7.5px;
+    padding: 10px;
+    background: #eeeeee;
+    border: 1px solid #919191;
+}
+
+.unselected {
+    /*background: #33383e;*/
+    background: #878f99;
+    border: 1px solid black;
+    z-index: -1;
+}
+
+.post_head.unselected {
+    border-bottom: 0;
+}
+
+.addSize {
+    position: absolute;
+    width: fit-content;
+    z-index: 8;
+    display: flex;
+    
+}
+
+.addSize button {
+    position: absolute;
+}
+
+.no-visible {
+    display: none;
+}

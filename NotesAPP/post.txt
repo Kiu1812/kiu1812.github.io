@@ -1,0 +1,15 @@
+<div class="post hor1 ver1">
+    <div class="post_head">
+        <h2 class="post_header">Texto Aqui</h2>
+        <button class="bt_edit"><img src="src/img/edit.png" width="25px" height="25px"></button>
+    </div>
+    <div class="post_content">
+        <pre class="post_text">Y aqui va mucho mas texto, esto es solo una prueba para ver como se adapta el texto al recuadro donde se encuentra</pre>
+    </div>
+    <div class="addSize no-visible">
+        <button class="bt_removeWidth ver1 hor1" onclick="removeWidth(1)"><img src="src/img/remove.png" width="25px"></button>
+        <button class="bt_removeHeight hor1 ver1" onclick="removeHeight(1)"><img src="src/img/remove.png" width="25px"></button>
+        <button class="bt_addWidth hor1 ver1" onclick="addWidth(1)"><img src="src/img/create.png" width="25px"></button>
+        <button class="bt_addHeight hor1 ver1" onclick="addHeight(1)"><img src="src/img/create.png" width="25px"></button>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WAPP NOTES</title>
+    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/sizeStyle.css">
+    <script src="src/js/script.js" defer></script>
+  </head>
+  <body>
+    <div id="barra">
+      <button class="bt_sidebar"><img src="src/img/sidebar.png" width="20px" height="20px"></button>
+      <button class="bt_sidebar" onclick="createPost()"><img src="src/img/create.png" width="20px" height="20px"></button>
+      <button class="bt_sidebar"><img src="src/img/edit.png" width="20px" height="20px"></button>
+      <button class="bt_sidebar" id="bt_bin" onclick="removePost()"><img src="src/img/bin.png" width="20px" height="20px"></button>
+    </div>
+    <div id="posts"></div>
+  </body>
+</html>

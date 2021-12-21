@@ -157,6 +157,7 @@ function addWidth(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function addHeight(id) {
@@ -172,6 +173,7 @@ function addHeight(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function removeWidth(id) {
@@ -187,6 +189,7 @@ function removeWidth(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function removeHeight(id) {
@@ -204,6 +207,25 @@ function removeHeight(id) {
   }
 }
 
+function addAutoSize() {
+  let post = document.getElementsByClassName("post");
+  let bt_addWidth = document.getElementsByClassName("bt_addWidth");
+  let bt_addHeight = document.getElementsByClassName("bt_addHeight");
+  for (let i = 0; i < post.length; i++) {
+    if (post[i].offsetTop == post[i+1].offsetTop) {
+      if (post[i].clientHeight < post[i+1].clientHeight) {
+        for (let j = 2; j <= 3; j++) {
+          let nextClass = "ver"+j;
+          if (post[i+1].classList.contains(nextClass)) {
+            setSizeClass(("ver"+(j-1)), nextClass, post, bt_addHeight, bt_addWidth, i);
+            addAutoSize()
+          }
+        }
+      }
+    }
+  }
+}
+
 function setSizeClass(checkClass, nextClass, post, bt_addHeight, bt_addWidth, id) {
   post[id].classList.remove(checkClass);
   post[id].classList.add(nextClass);
@@ -217,6 +239,7 @@ function setSizeClass(checkClass, nextClass, post, bt_addHeight, bt_addWidth, id
   bt_removeHeight[id].classList.add(nextClass);
   bt_removeWidth[id].classList.remove(checkClass);
   bt_removeWidth[id].classList.add(nextClass);
+  checkSize(id+1)
 }
 
 
@@ -323,6 +346,41 @@ function createPost() {
     addEvents();
   }
 }
+
+function saveAll() {
+  let post = document.getElementById("posts");
+  let text = post.innerHTML;
+  var blob = new Blob([text], {type:"text/plain"});
+  var fileLink = document.createElement("a");
+  fileLink.download = "saveFile.txt";
+  fileLink.href = window.URL.createObjectURL(blob);
+  document.body.appendChild(fileLink);
+  fileLink.click();
+  fileLink.remove();
+}
+
+function importSave() {
+  let input = document.createElement('input');
+  input.type = 'file';
+  input.setAttribute("id", "fileInput");
+  input.click();
+  input.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+      var myFile = this.files[0];
+      var reader = new FileReader();
+      reader.addEventListener('load', function (e) {
+        console.log(e.target.result)
+        if  (confirm('Esta seguro que desea subir este archivo? Todos los datos actuales serán perdidos.')) {
+          let post = document.getElementById("posts");
+          post.innerHTML = e.target.result;
+        }
+      });
+      reader.readAsBinaryString(myFile);
+    }   
+    self.remove()
+  });
+}
+
 
 // THIS WILL EXECUTE WHEN THE WINDOW LOAD
 function loader() {

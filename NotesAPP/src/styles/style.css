@@ -1,10 +1,13 @@
 /*
 TODO
-Barra lateral para todas las funcionalidades
+Barra lateral para todas las funcionalidades ( en progreso )
 Barra de busqueda
 Eliminar Posts /// HECHO ( CREO )
-
-
+Cambiar color notas
+Crear grupos para las notas
+Filtar por color o grupo
+Al crear cambiar color
+Crear una o crear multiple
 */
 
 
@@ -28,8 +31,6 @@ input {
     top: 10px;
     left: 10px;
 }
-
-
 
 textarea {
     width: 245px;
@@ -108,6 +109,7 @@ pre {
 
 .post {
     position: relative;
+    display: block;
     background: #ffffff;
     width: 278.5px;
     height: 400px;
@@ -120,7 +122,6 @@ pre {
     max-width: 97.5vw;
     min-height: 170px;
     float: left;
-    float: top;
     z-index: 2;
     overflow:visible;
 }
@@ -151,7 +152,7 @@ pre {
 .unselected {
     /*background: #33383e;*/
     background: #878f99;
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     z-index: -1;
 }
 

@@ -1,31 +1,99 @@
 var editActive = false;
+var editModeActive = false;
 var resizing = false;
 var removeActive = false;
 
-// ACTIVATE OR DEACTIVATE THE EDIT MODE OF "thisArg" POST
-function edit(thisArg) {
-  var post = document.getElementsByClassName("post");
-  var head = document.getElementsByClassName("post_head");
-  var headers = document.getElementsByClassName("post_header");
-  var post_content = document.getElementsByClassName("post_content");
-  var text = document.getElementsByClassName("post_text");
-  var buttons = document.getElementsByClassName("bt_edit");
-  let addSize = document.getElementsByClassName("addSize");
-  if (editActive) {
-    editActive = false;
-    for (let i = 1; i <= post.length; i++){
-      if (i != thisArg) {
-        buttons[i-1].removeAttribute("disabled");
-        post[i-1].classList.remove("unselected");
-        head[i-1].setAttribute("class", "post_head");
-        post_content[i-1].setAttribute("class", "post_content");
-      }
+function editMode() {
+
+  let post = document.getElementsByClassName("post");
+  let head = document.getElementsByClassName("post_head");
+  let post_content = document.getElementsByClassName("post_content");
+  let buttons = document.getElementsByClassName("bt_edit");
+  if (editModeActive) {
+    editModeActive = false;
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].classList.add("no-visible");
+      post[i].removeAttribute("onclick");
+      buttons[i].removeAttribute("disabled");
+      post[i].classList.remove("unselected");
+      head[i].setAttribute("class", "post_head");
+      post_content[i].setAttribute("class", "post_content");
+      disableEdit(i+1)
     }
-    post[thisArg-1].removeAttribute("id");
-    let headers_value = headers[thisArg-1].value;
-    let text_value = text[thisArg-1].value;
-    headers[thisArg-1].remove();
-    text[thisArg-1].remove();
+  } else {
+    editModeActive = true;
+    addEditEvents();
+    enableEdit(0);
+  }
+}
+
+function addEditEvents() {
+  let post = document.getElementsByClassName("post");
+  let buttons = document.getElementsByClassName("bt_edit");
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("no-visible");
+    post[i].setAttribute("onclick", "enableEdit("+i+")");
+  }
+}
+
+function enableEdit(id) {
+  let post = document.getElementsByClassName("post");
+  let buttons = document.getElementsByClassName("bt_edit");
+  let head = document.getElementsByClassName("post_head");
+  let post_content = document.getElementsByClassName("post_content");
+  let headers = document.getElementsByClassName("post_header");
+  let text = document.getElementsByClassName("post_text");
+  let addSize = document.getElementsByClassName("addSize");
+  addEditEvents();
+  for (let i = 1; i <= post.length; i++){
+    disableEdit(i)
+    if (i-1 != id) {
+      buttons[i-1].setAttribute("disabled","");
+      post[i-1].classList.add("unselected");
+      head[i-1].setAttribute("class", "post_head unselected");
+      post_content[i-1].setAttribute("class", "post_content unselected");
+    }
+  }
+
+  post[id].setAttribute("id", "resizable");
+  post[id].removeAttribute("onclick");
+  let headers_value = headers[id].innerHTML;
+  let text_value = text[id].innerHTML;
+  headers[id].remove();
+  text[id].remove();
+  delete headers;
+  delete text;
+  let headers_input = document.createElement("input");
+  headers_input.value = headers_value;
+  headers_input.setAttribute("class", "post_header");
+  let text_input = document.createElement("textarea");
+  text_input.innerHTML = text_value;
+  text_input.setAttribute("class", "post_text");
+  head[id].appendChild(headers_input);
+  post_content[id].appendChild(text_input);
+  addSize[id].classList.remove("no-visible");
+  checkSize(id+1);
+}
+
+function disableEdit(i) {
+  let post = document.getElementsByClassName("post");
+  let buttons = document.getElementsByClassName("bt_edit");
+  let head = document.getElementsByClassName("post_head");
+  let post_content = document.getElementsByClassName("post_content");
+  let headers = document.getElementsByClassName("post_header");
+  let text = document.getElementsByClassName("post_text");
+  let addSize = document.getElementsByClassName("addSize");
+  buttons[i-1].removeAttribute("disabled");
+  post[i-1].classList.remove("unselected");
+  head[i-1].setAttribute("class", "post_head");
+  post_content[i-1].setAttribute("class", "post_content");
+
+  if (post[i-1].id == "resizable") {
+    post[i-1].removeAttribute("id");
+    let headers_value = headers[i-1].value;
+    let text_value = text[i-1].value;
+    headers[i-1].remove();
+    text[i-1].remove();
     delete headers;
     delete text;
     let headers_text = document.createElement("h2");
@@ -34,43 +102,17 @@ function edit(thisArg) {
     let post_text = document.createElement("pre");
     post_text.innerHTML = text_value;
     post_text.setAttribute("class", "post_text");
-    head[thisArg-1].appendChild(headers_text);
-    post_content[thisArg-1].appendChild(post_text);
-    addSize[thisArg-1].classList.add("no-visible");
-    checkSize(thisArg);
-  } else {
-    editActive = true;
-    for (let i = 1; i <= post.length; i++){
-      if (i != thisArg) {
-        buttons[i-1].setAttribute("disabled","");
-        post[i-1].classList.add("unselected");
-        head[i-1].setAttribute("class", "post_head unselected");
-        post_content[i-1].setAttribute("class", "post_content unselected");
-      }
-    }
-    post[thisArg-1].setAttribute("id", "resizable");
-    let headers_value = headers[thisArg-1].innerHTML;
-    let text_value = text[thisArg-1].innerHTML;
-    headers[thisArg-1].remove();
-    text[thisArg-1].remove();
-    delete headers;
-    delete text;
-    let headers_input = document.createElement("input");
-    headers_input.value = headers_value;
-    headers_input.setAttribute("class", "post_header");
-    let text_input = document.createElement("textarea");
-    text_input.innerHTML = text_value;
-    text_input.setAttribute("class", "post_text");
-    head[thisArg-1].appendChild(headers_input);
-    post_content[thisArg-1].appendChild(text_input);
-    addSize[thisArg-1].classList.remove("no-visible");
+    head[i-1].appendChild(headers_text);
+    post_content[i-1].appendChild(post_text);
+    addSize[i-1].classList.add("no-visible");
+    checkSize(i);
   }
 }
 
 function removePost() {
   var buttons = document.getElementsByClassName("bt_edit");
   var button = document.getElementById("bt_bin");
-  if (!editActive) {
+  if (!editActive && !editModeActive) {
     if (removeActive) {
       removeActive = false;
       for (let i = 1; i <= buttons.length; i++) {
@@ -79,7 +121,7 @@ function removePost() {
           img.setAttribute("width", "25px");
           img.setAttribute("height", "25px");
           buttons[i-1].innerHTML = "";
-          img.setAttribute("src", "src/img/edit.png");
+          img.setAttribute("src", "src/img/postOptions.png");
           buttons[i-1].appendChild(img);
         }
         
@@ -157,6 +199,7 @@ function addWidth(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function addHeight(id) {
@@ -172,6 +215,7 @@ function addHeight(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function removeWidth(id) {
@@ -187,6 +231,7 @@ function removeWidth(id) {
       break;
     }
   }
+  addAutoSize();
 }
 
 function removeHeight(id) {
@@ -204,6 +249,27 @@ function removeHeight(id) {
   }
 }
 
+function addAutoSize() {
+  let post = document.getElementsByClassName("post");
+  let bt_addWidth = document.getElementsByClassName("bt_addWidth");
+  let bt_addHeight = document.getElementsByClassName("bt_addHeight");
+  for (let i = 0; i < post.length; i++) {
+    if (i != post.length-1) {
+      if (post[i].offsetTop == post[i+1].offsetTop) {
+        if (post[i].clientHeight < post[i+1].clientHeight) {
+          for (let j = 2; j <= 3; j++) {
+            let nextClass = "ver"+j;
+            if (post[i+1].classList.contains(nextClass)) {
+              setSizeClass(("ver"+(j-1)), nextClass, post, bt_addHeight, bt_addWidth, i);
+              addAutoSize()
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 function setSizeClass(checkClass, nextClass, post, bt_addHeight, bt_addWidth, id) {
   post[id].classList.remove(checkClass);
   post[id].classList.add(nextClass);
@@ -217,9 +283,8 @@ function setSizeClass(checkClass, nextClass, post, bt_addHeight, bt_addWidth, id
   bt_removeHeight[id].classList.add(nextClass);
   bt_removeWidth[id].classList.remove(checkClass);
   bt_removeWidth[id].classList.add(nextClass);
+  checkSize(id+1)
 }
-
-
 
 // ADD ALL THE ONCLICK EVENTS TO POSTS
 function addEvents() {
@@ -243,7 +308,7 @@ function addEvents() {
   for (let i = 1; i <= post.length; i++){
     post[i-1].setAttribute("onclick", "checkSize("+i+")");
     post[i-1].setAttribute("onpointermove", "checkSize("+i+")");
-    button[i-1].setAttribute("onclick", "edit("+i+")");
+    button[i-1].setAttribute("onclick", "enableOptions("+i+")");
     bt_addWidth[i-1].setAttribute("onclick","addWidth("+i+")");
     bt_addHeight[i-1].setAttribute("onclick","addHeight("+i+")");
     bt_removeWidth[i-1].setAttribute("onclick","removeWidth("+i+")");
@@ -264,10 +329,10 @@ function createPost() {
     post_header.innerHTML = "Texto Aqui";
     post_header.setAttribute("class", "post_header");
     let bt_edit = document.createElement("button");
-    bt_edit.setAttribute("class","bt_edit");
+    bt_edit.setAttribute("class","bt_edit no-visible");
     let img = document.createElement("img");
     img.setAttribute("width", "25px");
-    img.setAttribute("src", "src/img/edit.png");
+    img.setAttribute("src", "src/img/postOptions.png");
     bt_edit.appendChild(img);
     post_head.appendChild(post_header);
     post_head.appendChild(bt_edit);
@@ -297,7 +362,6 @@ function createPost() {
     img_addHeight.setAttribute("width", "25px");
     img_addHeight.setAttribute("src", "src/img/create.png");
     bt_addHeight.appendChild(img_addHeight);
-
     let bt_removeWidth = document.createElement("button");
     bt_removeWidth.classList.add("bt_removeWidth");
     bt_removeWidth.classList.add("hor1");
@@ -323,6 +387,43 @@ function createPost() {
     addEvents();
   }
 }
+
+
+/* SAVE AND IMPORT FUNCTIONS */
+function saveAll() {
+  let post = document.getElementById("posts");
+  let text = btoa(post.innerHTML);
+  var blob = new Blob([text], {type:"text/plain"});
+  var fileLink = document.createElement("a");
+  fileLink.download = "saveFile.txt";
+  fileLink.href = window.URL.createObjectURL(blob);
+  document.body.appendChild(fileLink);
+  fileLink.click();
+  fileLink.remove();
+}
+
+function importSave() {
+  let input = document.createElement('input');
+  input.type = 'file';
+  input.setAttribute("id", "fileInput");
+  input.click();
+  input.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+      var myFile = this.files[0];
+      var reader = new FileReader();
+      reader.addEventListener('load', function (e) {
+        
+        if (confirm('Esta seguro que desea subir este archivo? Todos los datos actuales serán perdidos.')) {
+          let post = document.getElementById("posts");
+          let result = atob(e.target.result);
+          post.innerHTML = result;
+        }
+      });
+      reader.readAsBinaryString(myFile);
+    }
+  });
+}
+
 
 // THIS WILL EXECUTE WHEN THE WINDOW LOAD
 function loader() {

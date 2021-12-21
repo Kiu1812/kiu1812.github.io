@@ -1,4 +1,3 @@
-var editActive = false;
 var editModeActive = false;
 var resizing = false;
 var removeActive = false;
@@ -9,21 +8,36 @@ function editMode() {
   let head = document.getElementsByClassName("post_head");
   let post_content = document.getElementsByClassName("post_content");
   let buttons = document.getElementsByClassName("bt_edit");
-  if (editModeActive) {
-    editModeActive = false;
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].classList.add("no-visible");
-      post[i].removeAttribute("onclick");
-      buttons[i].removeAttribute("disabled");
-      post[i].classList.remove("unselected");
-      head[i].setAttribute("class", "post_head");
-      post_content[i].setAttribute("class", "post_content");
-      disableEdit(i+1)
+  let editButton = document.getElementById("bt_editMode");
+  if (!removeActive) {
+    if (editModeActive) {
+      editModeActive = false;
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.add("no-visible");
+        post[i].removeAttribute("onclick");
+        buttons[i].removeAttribute("disabled");
+        post[i].classList.remove("unselected");
+        head[i].setAttribute("class", "post_head");
+        post_content[i].setAttribute("class", "post_content");
+        disableEdit(i+1)
+      }
+      let img = document.createElement("img");
+      img.setAttribute("src", "src/img/edit.png");
+      img.setAttribute("width", "20px");
+      img.setAttribute("height", "20px")
+      editButton.innerHTML = "";
+      editButton.appendChild(img);
+    } else {
+      editModeActive = true;
+      addEditEvents();
+      enableEdit(0);
+      let img = document.createElement("img");
+      img.setAttribute("src", "src/img/greenEdit.png");
+      img.setAttribute("width", "20px");
+      img.setAttribute("height", "20px")
+      editButton.innerHTML = "";
+      editButton.appendChild(img);
     }
-  } else {
-    editModeActive = true;
-    addEditEvents();
-    enableEdit(0);
   }
 }
 
@@ -124,13 +138,12 @@ function changeBack(id) {
   let post = document.getElementsByClassName("post");
   let colorInput = document.getElementsByClassName("colorInput");
   post[id-1].style.backgroundColor = colorInput[id-1].value;
-  /*post[id-1].setAttribute("style", "background-color: "+colorInput[id-1].value);*/
 }
 
 function removePost() {
   var buttons = document.getElementsByClassName("bt_edit");
   var button = document.getElementById("bt_bin");
-  if (!editActive && !editModeActive) {
+  if (!editModeActive) {
     if (removeActive) {
       removeActive = false;
       for (let i = 1; i <= buttons.length; i++) {
@@ -187,7 +200,7 @@ function removeSelf(cont) {
   } 
 }
 
-// PUTS THE SIZE OF ALL THE ELEMENTS TO THE PROPER WAY WHEN RESIZING
+// PUTS THE SIZE OF ELEMENT TO THE PROPER WAY
 function checkSize(id) {
   let post = document.getElementsByClassName("post");
   let post_head = document.getElementsByClassName("post_head");
@@ -343,7 +356,7 @@ function addEvents() {
 
 // CREATE POST
 function createPost() {
-  if (!removeActive && !editActive) {
+  if (!removeActive && !editModeActive) {
     let posts = document.getElementById("posts");
 
     /* Main Div*/
@@ -371,6 +384,7 @@ function createPost() {
     let colorInput = document.createElement("input");
     colorInput.setAttribute("type", "color");
     colorInput.classList.add("colorInput");
+    colorInput.value = "#ffffff";
     changeColorDiv.appendChild(colorInput);
     noteOptions.appendChild(changeColorDiv);
     let changeGroupDiv = document.createElement("div");

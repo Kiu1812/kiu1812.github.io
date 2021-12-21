@@ -1,7 +1,22 @@
 <div class="post hor1 ver1">
     <div class="post_head">
         <h2 class="post_header">Texto Aqui</h2>
-        <button class="bt_edit"><img src="src/img/edit.png" width="25px" height="25px"></button>
+        <button class="bt_edit no-visible"><img src="src/img/postOptions.png" width="25px" height="25px"></button>
+
+        *///// NEW
+        
+        <div class="noteOptions">
+            <div class="noteSubOptions changeColorDiv">
+                <input type="color">
+            </div>
+            <div class="noteSubOptions changeGroupDiv">
+                <button id="changeGroup">Change Group</button>
+            </div>
+        </div>
+
+        *///// NEW
+
+        
     </div>
     <div class="post_content">
         <pre class="post_text">Y aqui va mucho mas texto, esto es solo una prueba para ver como se adapta el texto al recuadro donde se encuentra</pre>
@@ -13,3 +28,5 @@
         <button class="bt_addHeight hor1 ver1" onclick="addHeight(1)"><img src="src/img/create.png" width="25px"></button>
     </div>
 </div>
+
+<div class="post hor1 ver1" onpointermove="checkSize(1)" id="resizable"><div class="post_head" style="width: 279px;"><button class="bt_edit" onclick="enableOptions(1)"><img width="25px" src="src/img/postOptions.png"></button><div class="noteOptions"><div class="noteSubOptions changeColorDiv"><input type="color"></div><div class="noteSubOptions changeGroupDiv"><button id="changeGroup">Change Group</button></div></div><input class="post_header" style="width: 189px;"></div><div class="post_content" style="width: 259px; height: 300px;"><textarea class="post_text" style="width: 254px; max-width: 254px; height: 295px; max-height: 295px;">text example</textarea></div><div class="addSize"><button class="bt_addWidth hor1 ver1" onclick="addWidth(1)"><img width="25px" src="src/img/create.png"></button><button class="bt_addHeight hor1 ver1" onclick="addHeight(1)"><img width="25px" src="src/img/create.png"></button><button class="bt_removeWidth hor1 ver1" onclick="removeWidth(1)"><img width="25px" src="src/img/remove.png"></button><button class="bt_removeHeight hor1 ver1" onclick="removeHeight(1)"><img width="25px" src="src/img/remove.png"></button></div></div>'

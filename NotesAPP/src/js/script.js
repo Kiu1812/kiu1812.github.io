@@ -83,6 +83,7 @@ function disableEdit(i) {
   let headers = document.getElementsByClassName("post_header");
   let text = document.getElementsByClassName("post_text");
   let addSize = document.getElementsByClassName("addSize");
+  let options = document.getElementsByClassName("noteOptions");
   buttons[i-1].removeAttribute("disabled");
   post[i-1].classList.remove("unselected");
   head[i-1].setAttribute("class", "post_head");
@@ -105,8 +106,25 @@ function disableEdit(i) {
     head[i-1].appendChild(headers_text);
     post_content[i-1].appendChild(post_text);
     addSize[i-1].classList.add("no-visible");
+    options[i-1].classList.add("no-visible");
     checkSize(i);
   }
+}
+
+function enableOptions(id) {
+  id = id-1;
+  let options = document.getElementsByClassName("noteOptions");
+  if (options[id].classList.contains("no-visible"))
+    options[id].classList.remove("no-visible");
+  else
+    options[id].classList.add("no-visible");
+}
+
+function changeBack(id) {
+  let post = document.getElementsByClassName("post");
+  let colorInput = document.getElementsByClassName("colorInput");
+  post[id-1].style.backgroundColor = colorInput[id-1].value;
+  /*post[id-1].setAttribute("style", "background-color: "+colorInput[id-1].value);*/
 }
 
 function removePost() {
@@ -124,7 +142,8 @@ function removePost() {
           img.setAttribute("src", "src/img/postOptions.png");
           buttons[i-1].appendChild(img);
         }
-        
+        buttons[i-1].classList.add("no-visible");
+        buttons[i-1].classList.remove("resetRotation");
       }
       button.innerHTML = "";
       let img2 = document.createElement("img");
@@ -151,6 +170,8 @@ function removePost() {
         img2.setAttribute("width", "20px");
         img2.setAttribute("height", "20px");
         img2.setAttribute("src", "src/img/redbin.png");
+        buttons[i-1].classList.remove("no-visible");
+        buttons[i-1].classList.add("resetRotation");
         button.appendChild(img2);
       }
     }
@@ -294,6 +315,7 @@ function addEvents() {
   let bt_addWidth = document.getElementsByClassName("bt_addWidth");
   let bt_removeWidth = document.getElementsByClassName("bt_removeWidth");
   let bt_removeHeight = document.getElementsByClassName("bt_removeHeight");
+  let colorInput = document.getElementsByClassName("colorInput");
 
   for (let i = 1; i <= post.length; i++){
     post[i-1].removeAttribute("onclick");
@@ -303,6 +325,7 @@ function addEvents() {
     bt_addHeight[i-1].removeAttribute("onclick");
     bt_removeWidth[i-1].removeAttribute("onclick");
     bt_removeHeight[i-1].removeAttribute("onclick");
+    colorInput[i-1].removeAttribute("oninput");
   }
 
   for (let i = 1; i <= post.length; i++){
@@ -313,6 +336,7 @@ function addEvents() {
     bt_addHeight[i-1].setAttribute("onclick","addHeight("+i+")");
     bt_removeWidth[i-1].setAttribute("onclick","removeWidth("+i+")");
     bt_removeHeight[i-1].setAttribute("onclick","removeHeight("+i+")");
+    colorInput[i-1].setAttribute("oninput", "changeBack("+i+")");
   }
 }
 
@@ -321,8 +345,12 @@ function addEvents() {
 function createPost() {
   if (!removeActive && !editActive) {
     let posts = document.getElementById("posts");
+
+    /* Main Div*/
     let post = document.createElement("div");
     post.setAttribute("class", "post hor1 ver1");
+
+    /* Post header*/
     let post_head = document.createElement("div");
     post_head.setAttribute("class", "post_head");
     let post_header = document.createElement("h2");
@@ -334,8 +362,31 @@ function createPost() {
     img.setAttribute("width", "25px");
     img.setAttribute("src", "src/img/postOptions.png");
     bt_edit.appendChild(img);
+    let noteOptions = document.createElement("div");
+    noteOptions.classList.add("noteOptions");
+    noteOptions.classList.add("no-visible");
+    let changeColorDiv = document.createElement("div");
+    changeColorDiv.classList.add("noteSubOptions");
+    changeColorDiv.classList.add("changeColorDiv");
+    let colorInput = document.createElement("input");
+    colorInput.setAttribute("type", "color");
+    colorInput.classList.add("colorInput");
+    changeColorDiv.appendChild(colorInput);
+    noteOptions.appendChild(changeColorDiv);
+    let changeGroupDiv = document.createElement("div");
+    changeGroupDiv.classList.add("noteSubOptions");
+    changeGroupDiv.classList.add("changeGroupDiv");
+    let buttonGroup = document.createElement("button");
+    buttonGroup.setAttribute("id", "changeGroup");
+    buttonGroup.innerHTML = "Change Group";
+    changeGroupDiv.appendChild(buttonGroup);
+    noteOptions.appendChild(changeGroupDiv);
     post_head.appendChild(post_header);
     post_head.appendChild(bt_edit);
+    post_head.appendChild(noteOptions);
+
+
+    /* Post content*/
     post.appendChild(post_head);
     let post_content = document.createElement("div");
     post_content.setAttribute("class","post_content");
@@ -344,6 +395,8 @@ function createPost() {
     pre.innerHTML = "text example";
     post_content.appendChild(pre);
     post.appendChild(post_content);
+
+    /* ChangeSize Div*/
     let addSize = document.createElement("div");
     addSize.setAttribute("class", "addSize no-visible");
     let bt_addWidth = document.createElement("button");
@@ -383,8 +436,32 @@ function createPost() {
     addSize.appendChild(bt_removeWidth);
     addSize.appendChild(bt_removeHeight);
     post.appendChild(addSize);
+
+    /* ADD TO DOM*/
     posts.appendChild(post);
     addEvents();
+    delete posts;
+    delete post;
+    delete post_head;
+    delete post_header;
+    delete bt_edit;
+    delete img;
+    delete noteOptions;
+    delete changeColorDiv;
+    delete colorInput;
+    delete changeGroupDiv;
+    delete buttonGroup;
+    delete post_content;
+    delete pre;
+    delete addSize;
+    delete bt_addWidth;
+    delete img_addWidth;
+    delete bt_addHeight;
+    delete img_addHeight;
+    delete bt_removeWidth;
+    delete img_removeWidth;
+    delete bt_removeHeight;
+    delete img_removeHeight;
   }
 }
 
@@ -412,7 +489,6 @@ function importSave() {
       var myFile = this.files[0];
       var reader = new FileReader();
       reader.addEventListener('load', function (e) {
-        
         if (confirm('Esta seguro que desea subir este archivo? Todos los datos actuales serán perdidos.')) {
           let post = document.getElementById("posts");
           let result = atob(e.target.result);

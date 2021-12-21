@@ -7,7 +7,7 @@ Cambiar color notas
 Crear grupos para las notas
 Filtar por color o grupo
 Al crear cambiar color
-Crear una o crear multiple
+Crear una nota o crear multiple
 */
 
 
@@ -78,6 +78,7 @@ pre {
     border-radius: 20px;
     cursor: pointer;
     transform: rotateZ(90deg);
+    background: rgba(0,0,0,0.0001)
 }
 .bt_edit:hover {
     background: #bbbbbb;
@@ -152,7 +153,6 @@ pre {
 .unselected {
     background: #878f99;
     z-index: -1;
-    transition: 0.5s;
 }
 
 .post_head.unselected {
@@ -174,4 +174,50 @@ pre {
 
 .no-visible {
     display: none;
+}
+
+.resetRotation {
+    transform: rotateZ(0deg)
+}
+
+.noteOptions {
+    background: #cccccc;
+    border-radius: 10px;
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    padding: 5px;
+    padding-top: 0;
+    z-index: 5;
+    right: 10px;
+    top: 65px;
+}
+
+.noteSubOptions {
+    background: #aaaaaa;
+    width: 180px;
+    height: 30px;
+    padding: 5px;
+    position: relative;
+    margin: auto;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.noteSubOptions input {
+    margin: auto;
+    position: absolute;
+    width: 160px;
+    height: 25px;
+    left: 15px;
+    top: 7.5px;
+}
+
+.noteSubOptions button {
+    margin: auto;
+    position: absolute;
+    width: 160px;
+    height: 25px;
+    left: 15px;
+    top: 7.5px;
 }

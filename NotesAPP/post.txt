@@ -2,21 +2,14 @@
     <div class="post_head">
         <h2 class="post_header">Texto Aqui</h2>
         <button class="bt_edit no-visible"><img src="src/img/postOptions.png" width="25px" height="25px"></button>
-
-        *///// NEW
-        
         <div class="noteOptions">
-            <div class="noteSubOptions changeColorDiv">
+            <div class="noteSubOptions sub2 changeColorDiv">
                 <input type="color">
             </div>
             <div class="noteSubOptions changeGroupDiv">
                 <button id="changeGroup">Change Group</button>
             </div>
         </div>
-
-        *///// NEW
-
-        
     </div>
     <div class="post_content">
         <pre class="post_text">Y aqui va mucho mas texto, esto es solo una prueba para ver como se adapta el texto al recuadro donde se encuentra</pre>

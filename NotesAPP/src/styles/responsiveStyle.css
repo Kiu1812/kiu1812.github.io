@@ -1,0 +1,16 @@
+@media screen and (max-width: 600px) {
+    .post {
+        width: 95%;
+        height: 300px;
+    }
+
+    .post_head {
+        width: 95%;
+        height: 56.25px;
+    }
+
+    .post_content {
+        width: 93%;
+        height: 225px;
+    }
+}

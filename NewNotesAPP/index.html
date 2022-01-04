@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <div id="upMenu">
+        <div id="search">
+            <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="27" oninput="checkInput()">
+            <button><img src="lupa.png" width="24px" height="24px"></button>
+        </div>
+    </div>
+    <div id="leftMenu" class="no-visible closed">
+        <button id="alternateLeftMenu" onclick="alternateLeft()">></button>
+        <div class="colorPaletteDiv no-visible">
+            <div id="hidePalettes">
+                <div class="no-visible" id="copyPalette">
+                    <span class="color color1"></span>
+                    <span class="color color2"></span>
+                    <span class="color color3"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="posts"> 
+        <div class="post no-visible" id="copyPost">
+            <div class="post_head">
+                <input type="text" class="post_header" placeholder="Click to edit">
+            </div>
+            <div class="post_content small">
+                <span class="post_content_border"></span>
+                <textarea class="post_text" placeholder="Click to edit"></textarea>
+            </div>
+            <div class="post_options showing">
+                <button class="showHide showing">></button>
+                <div class="post_options_content showing">
+                    <button onclick="opt_GoLeft(1)" class="bt_moveOptions bt_optionsGoLeft set1"><</button>
+                    <button onclick="opt_GoRight(1)" class="bt_moveOptions bt_optionsGoRight set1">></button>
+                    <div class="post_options_options set1">
+                        <div class="options_Color">
+                            <h4>Colors</h4>
+                            <button class="changeColor">Open Palettes</button>
+                        </div>
+                        <div class="options_Group">
+                            <h4>Groups</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script rel="text/javascript" src="script.js"></script>
+</body>
+</html>

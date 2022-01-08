@@ -1,0 +1,40 @@
+body {
+    background-color: #212121;
+}
+
+input {
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 90%;
+    border: 0;
+    height: 50px;
+    top: 10px;
+    left: 10px;
+    color: inherit;
+    background-color: inherit;
+}
+
+input:focus {
+    outline: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+textarea {
+    width: 90%;
+    position: absolute;
+    height: 92%;
+    top: 10px;
+    left: 10px;
+    resize: none;
+    color: inherit;
+    background-color: inherit;
+    border: 0;
+}
+
+textarea:focus {
+    outline: 0;
+}

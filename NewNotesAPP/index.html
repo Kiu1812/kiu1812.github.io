@@ -5,13 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="css/gridSizeStyles.css">
+    <link rel="stylesheet" href="css/leftBarStyles.css">
+    <link rel="stylesheet" href="css/mainStyles.css">
+    <link rel="stylesheet" href="css/postStyles.css">
+    <link rel="stylesheet" href="css/topBarStyles.css">
 </head>
 <body>
     <div id="upMenu">
         <div id="search">
-            <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="27" oninput="checkInput()">
-            <button><img src="lupa.png" width="24px" height="24px"></button>
+            <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="36" oninput="checkInput()">
+            <!--<button><img src="img/lupa.png" width="24px" height="24px"></button>-->
+        </div>
+        <div id="createPost" class="menuObject">
+            <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
+        </div>
+        <div id="options" class="menuObject">
+            <button onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
+            <div id="optionsMenu" class="no-visible">
+                <p>Notes Grid</p>
+                <input class="gridSizeInput" type="text" placeholder="1-3">
+                <p id="x">x</p>
+                <input class="gridSizeInput" type="text" placeholder="3-6">
+                <button onclick="setGridSize()" id="setGridSize">SET</button>
+            </div>
         </div>
     </div>
     <div id="leftMenu" class="no-visible closed">
@@ -27,7 +44,7 @@
         </div>
     </div>
 
-    <div id="posts"> 
+    <div id="posts" class="w6 h2"> 
         <div class="post no-visible" id="copyPost">
             <div class="post_head">
                 <input type="text" class="post_header" placeholder="Click to edit">
@@ -49,12 +66,15 @@
                         <div class="options_Group">
                             <h4>Groups</h4>
                         </div>
+                        <div class="options_Remove">
+                            <button class="removeBT">REMOVE</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script rel="text/javascript" src="script.js"></script>
+    <script rel="text/javascript" src="js/script.js"></script>
 </body>
 </html>

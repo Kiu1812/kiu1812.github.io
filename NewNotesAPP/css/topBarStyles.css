@@ -1,0 +1,119 @@
+#upMenu {
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    background: white;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+
+
+#search {
+    position: absolute;
+    width: 25%;
+    height: 28px;
+    top: 5px;
+    background: #D3D3D3;
+    border: 1px solid #a5a5a5;
+    border-radius: 5px;
+    margin-left: 720px;
+}
+#search input {
+    position: absolute;
+    width: 470px;
+    height: 24px;
+    background: inherit;
+    left: 3px;
+    top: 1px;
+}
+#search button {
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    padding: 0;
+    width: 28px;
+    height: 30px;
+    background-color: inherit;
+    border: inherit;
+    
+}
+#search button img {
+    margin-top: 1px;
+}
+
+
+
+
+.menuObject {
+    position: absolute;
+    top: 5px;
+    margin-left: 0px;
+}
+.menuObject button{
+    border-radius: 2px;
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background: #ccc;
+    transition: .5s;
+}
+.menuObject button:hover {
+    background: #aaa;
+}
+.menuObject img{
+    padding: 0;
+    margin-top: 2px;
+}
+#createPost {
+    margin-left: 5px;
+}
+#options {
+    margin-left: 40px;
+}
+
+#optionsMenu {
+    position: absolute;
+    width: 150px;
+    height: 100px;
+    background: white;
+    z-index: 500;
+    margin-top: 10px;
+}
+
+#optionsMenu.no-visible {
+    display: none;
+}
+
+#optionsMenu p:nth-child(1) {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#x {
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 57px;
+    font-size: 2em;
+}
+
+.gridSizeInput {
+    position: absolute;
+    width: 40px;
+    height: 30px;
+    margin-top: 20px;
+    background: lightgray;
+}
+
+.gridSizeInput:nth-child(2) {
+    margin-left: 65px;
+}
+
+#setGridSize {
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 50px;
+}

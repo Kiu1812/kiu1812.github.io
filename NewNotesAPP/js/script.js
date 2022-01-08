@@ -5,10 +5,9 @@ let palettes = [
     ["#FEF031","#BDE902","#018558"], // Green
     ["#D7EAF3","#77B5D9","#14397D"],
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
-
+    ["#FDA25F","#D28E75","#C6E4F2"],
 
     // relleno
-    ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
     /* TO TEST 
@@ -18,6 +17,7 @@ let palettes = [
     */
 ]
 let lastSelected = 1;
+let cantPostOptions = 3;
 
 function createPost(cant) {
 /* CREA UNA cant DE POST DUPLICANDO UNO INVISIBLE Y DEFAULT EN EL DOM */
@@ -44,6 +44,16 @@ function createPost(cant) {
     // ESTE CREATE POST TIENE 130 LINEAS MENOS QUE EL OTRO 
     // ADEMAS ES MAS FACIL DE MODIFICAR
 }
+function createFunc() {
+    let cant = prompt("Cuantos posts quieres crear?");
+    cant = parseInt(cant);
+    console.log(cant)
+    if (isNaN(cant)) {
+        cant = 0;
+    }
+    createPost(cant)
+}
+
 
 function addEvents() {
     // AÑADE LOS EVENTOS "onclick" A TODOS LOS ELEMENTOS DE POST QUE LO NECESITEN
@@ -52,13 +62,14 @@ function addEvents() {
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
     let btRight = document.getElementsByClassName("bt_optionsGoRight");
     let changeColor = document.getElementsByClassName("changeColor");
+    let removeBT = document.getElementsByClassName("removeBT");
     
     for (let i = 0; i < bt_showHide.length; i++) {
         bt_showHide[i].setAttribute("onclick", "toggleOptions("+i+")");
         btLeft[i].setAttribute("onclick", "opt_GoLeft("+i+")");
         btRight[i].setAttribute("onclick", "opt_GoRight("+i+")");
         changeColor[i].setAttribute("onclick", "alternateLeft()");
-        
+        removeBT[i].setAttribute("onclick","removeMe("+i+")");
         post[i].setAttribute("onclick", "select("+i+")");
     }
 }
@@ -181,7 +192,7 @@ function opt_GoLeft(id) {
     let div = document.getElementsByClassName("post_options_options");
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
     let btRight = document.getElementsByClassName("bt_optionsGoRight");
-    for (let i = 2; i < 3; i++) {
+    for (let i = 2; i < cantPostOptions+1; i++) {
         if (div[id].classList.contains("set"+i)) {
             div[id].classList.remove("set"+i);
             div[id].classList.add("set"+(i-1));
@@ -197,7 +208,7 @@ function opt_GoRight(id) {
     let div = document.getElementsByClassName("post_options_options");
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
     let btRight = document.getElementsByClassName("bt_optionsGoRight");
-    for (let i = 1; i < 2; i++) {
+    for (let i = 1; i < cantPostOptions; i++) {
         if (div[id].classList.contains("set"+i)) {
             div[id].classList.remove("set"+i);
             div[id].classList.add("set"+(i+1));
@@ -205,6 +216,7 @@ function opt_GoRight(id) {
             btLeft[id].classList.add("set"+(i+1));
             btRight[id].classList.remove("set"+i);
             btRight[id].classList.add("set"+(i+1));
+            break;
         }
     }
 }
@@ -228,7 +240,35 @@ function checkInput() {
     }
 }
 
+function removeMe(id) {
+    let post = document.getElementsByClassName("post");
+    post[id].remove();
+    addEvents();
+}
 
+function options() {
+    let optionsMenu = document.getElementById("optionsMenu");
+    if (optionsMenu.classList.contains("no-visible")) {
+        optionsMenu.classList.remove("no-visible");
+    } else {
+        optionsMenu.classList.add("no-visible");
+    }
+}
+
+function setGridSize() {
+    let inputs = document.getElementsByClassName("gridSizeInput");
+    let width = inputs[1].value;
+    let height = inputs[0].value;
+    console.log(width)
+    if (width >= 3 && width <= 6 && height >= 1 && height <= 3) {
+        let posts = document.getElementById("posts");
+        posts.setAttribute("class", "");
+        posts.classList.add("w"+width);
+        posts.classList.add("h"+height);
+    } else {
+        alert("Los valores maximos son: (3-6) y (1-3)")
+    }
+}
 
 // FUNCION AL CARGAR LA VENTANA
 function setPaletteColors() {
@@ -253,7 +293,7 @@ function setPaletteColors() {
     }
 }
 window.onload = function(ev) {
-    createPost(8);
+    createPost(18);
     addEvents();
     setPaletteColors();
 }

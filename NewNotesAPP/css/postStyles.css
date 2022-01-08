@@ -1,0 +1,193 @@
+#posts {
+    position: absolute;
+    top: 55px;
+    left: 27px;
+}
+
+.post {
+    position: relative;
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 7.5px;
+    resize: none;
+    margin: 5px;
+    float: left;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.post_head {
+    position: absolute;
+    width: inherit;
+    height: 75px;
+    margin: 0;
+    margin-left: -1px;
+    border-radius: 7.5px;
+    border: 1px solid #919191;
+    border-bottom: 0;
+    background: rgb(238, 238, 238);
+}
+
+.post_content {
+    position: absolute;
+    width: inherit;
+    margin: 0;
+    margin-left: -1px;
+    margin-top: 77px;
+    border-radius: 7.5px;
+    background: rgb(238, 238, 238);
+    border: 1px solid #919191;
+    border-bottom: 0;
+    transition: .5s;
+    
+}
+.post_content.big {
+    animation: showBorder .5s linear .2s forwards;
+    
+}
+@keyframes showBorder {
+    100% {
+        border-bottom: 1px solid #919191;
+    }
+}
+
+.post_options {
+    position: absolute;
+    width: inherit;
+    margin: 0;
+    margin-left: -1px;
+    border: 1px solid #919191;
+    border-radius: 7.5px;
+    background: rgb(238, 238, 238);
+    transition: .5s;
+}
+
+.post_options.showing {
+    height: 65px;
+}
+
+.post_options.hide {
+    height: 0;
+    animation: hideBorder .5s linear forwards;
+}
+@keyframes hideBorder {
+    100% {
+        border: 0;
+        
+    }
+}
+
+.post_options_content{
+    overflow:hidden;
+    background: inherit;
+}
+
+.post_options_content.hide {
+    display: none;
+}
+
+.post_options_options {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction:row;
+    width: 100vw;
+    transition: .5s;
+}
+
+.post_options_options div:not(:nth-child(1)) {
+    margin-left: 20px;
+}
+
+.post_options_options div {
+    height: 50px;
+    float: left;
+    font-weight: normal;
+}
+
+.options_Remove button {
+    color: white;
+    background: red;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+    margin-left: 69px;
+    margin-top: 5px;
+}
+
+.post_options_options div h4 {
+    font-weight: 600;
+    margin: 0;
+    margin-top: -5px;
+}
+
+.post_options_options div.options_Color h4 {
+    margin-left: -10px;
+}
+
+.bt_optionsGoLeft.set1 {
+    display: none;
+}
+
+.bt_optionsGoRight.set3 {
+    display: none;
+}
+
+.showHide {
+    position: absolute;
+    background: inherit;
+    color: inherit;
+    border: 1px solid #919191;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: -12.5px;
+    transition: .5s;
+}
+
+.showHide:hover {
+    background: #555;
+}
+
+.showHide.showing {
+    transform: rotateZ(90deg);
+}
+
+.showHide.hide {
+    transform: rotateZ(-90deg);
+}
+
+.bt_moveOptions {
+    position: absolute;
+    width: fit-content;
+    height: 90%;
+    margin-top: 3px;
+    background: inherit;
+    color: inherit;
+}
+
+.bt_moveOptions:hover {
+    background: #555;
+    border: 1px 2px 1px 1px solid #919191;
+}
+
+.bt_optionsGoLeft {
+    margin-left: -5px;
+    z-index: 1;
+}
+
+.options_color_select {
+    margin-top: 5px;
+}
+.color_input {
+    position: relative;
+    width: 155px;
+    margin-top: -40px;
+    margin-left: -5px;
+    z-index: 0;
+}
+
+.post_options_options .options_Color button, .post_options_options .options_Group button {
+    background-color: inherit;
+    color: inherit;
+    z-index: 3;
+}

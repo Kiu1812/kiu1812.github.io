@@ -9,7 +9,6 @@
 }
 
 
-
 #search {
     position: absolute;
     width: 25%;
@@ -76,8 +75,8 @@
 
 #optionsMenu {
     position: absolute;
-    width: 150px;
-    height: 100px;
+    width: 130px;
+    height: 70px;
     background: white;
     z-index: 500;
     margin-top: 10px;

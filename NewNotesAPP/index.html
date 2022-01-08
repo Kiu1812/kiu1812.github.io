@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/gridSizeStyles.css">
+    <link rel="stylesheet" href="css/gridSizeStylesMini.css">
     <link rel="stylesheet" href="css/leftBarStyles.css">
     <link rel="stylesheet" href="css/mainStyles.css">
     <link rel="stylesheet" href="css/postStyles.css">
@@ -23,11 +23,10 @@
         <div id="options" class="menuObject">
             <button onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
             <div id="optionsMenu" class="no-visible">
-                <p>Notes Grid</p>
-                <input class="gridSizeInput" type="text" placeholder="1-3">
+                <p>Notes grid size</p>
+                <input class="gridSizeInput" type="number" value="2" oninput="setGridSize()">
                 <p id="x">x</p>
-                <input class="gridSizeInput" type="text" placeholder="3-6">
-                <button onclick="setGridSize()" id="setGridSize">SET</button>
+                <input class="gridSizeInput" type="number" value="6" oninput="setGridSize()">
             </div>
         </div>
     </div>
@@ -44,18 +43,18 @@
         </div>
     </div>
 
-    <div id="posts" class="w6 h2"> 
+    <div id="posts" class="w6 h3"> 
         <div class="post no-visible" id="copyPost">
             <div class="post_head">
                 <input type="text" class="post_header" placeholder="Click to edit">
             </div>
-            <div class="post_content small">
+            <div class="post_content big">
                 <span class="post_content_border"></span>
                 <textarea class="post_text" placeholder="Click to edit"></textarea>
             </div>
-            <div class="post_options showing">
-                <button class="showHide showing">></button>
-                <div class="post_options_content showing">
+            <div class="post_options hide">
+                <button class="showHide hide">></button>
+                <div class="post_options_content hide">
                     <button onclick="opt_GoLeft(1)" class="bt_moveOptions bt_optionsGoLeft set1"><</button>
                     <button onclick="opt_GoRight(1)" class="bt_moveOptions bt_optionsGoRight set1">></button>
                     <div class="post_options_options set1">

@@ -71,6 +71,7 @@ function addEvents() {
         changeColor[i].setAttribute("onclick", "alternateLeft()");
         removeBT[i].setAttribute("onclick","removeMe("+i+")");
         post[i].setAttribute("onclick", "select("+i+")");
+        post[i].setAttribute("onmouseover", "resetTime("+i+")");
     }
 }
 
@@ -259,14 +260,26 @@ function setGridSize() {
     let inputs = document.getElementsByClassName("gridSizeInput");
     let width = inputs[1].value;
     let height = inputs[0].value;
-    console.log(width)
+    
+    if (width > 6) {
+        inputs[1].value = 6;
+        width = 6;
+    } else if (width < 3) {
+        inputs[1].value = 3;
+        width = 3;
+    } else if (height > 3) {
+        inputs[0].value = 3;
+        height = 3;
+    } else if (height < 1) {
+        inputs[0].value = 1;
+        height = 1;
+    }
+
     if (width >= 3 && width <= 6 && height >= 1 && height <= 3) {
         let posts = document.getElementById("posts");
         posts.setAttribute("class", "");
         posts.classList.add("w"+width);
         posts.classList.add("h"+height);
-    } else {
-        alert("Los valores maximos son: (3-6) y (1-3)")
     }
 }
 

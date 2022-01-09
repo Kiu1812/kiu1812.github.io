@@ -5,7 +5,7 @@ let palettes = [
     ["#FEF031","#BDE902","#018558"], // Green
     ["#D7EAF3","#77B5D9","#14397D"],
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
-    ["#FDA25F","#D28E75","#C6E4F2"],
+    ["#FDA25F","#D28E75","#C6E4F2"], // Paisaje
 
     // relleno
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
@@ -16,8 +16,9 @@ let palettes = [
     ["#","#","#"],
     */
 ]
-let lastSelected = 1;
+let lastSelected = 1; // El ultimo post seleccionado
 let cantPostOptions = 3;
+let mouseOverInputs = false;
 
 function createPost(cant) {
 /* CREA UNA cant DE POST DUPLICANDO UNO INVISIBLE Y DEFAULT EN EL DOM */
@@ -31,6 +32,8 @@ function createPost(cant) {
         body.appendChild(div);
         
     }
+
+    // le aplica una paleta por default a todos los post;
     let post = document.getElementsByClassName("post")
     for (let i = 0; i < post.length; i++) {
         lastSelected = i;
@@ -44,7 +47,9 @@ function createPost(cant) {
     // ESTE CREATE POST TIENE 130 LINEAS MENOS QUE EL OTRO 
     // ADEMAS ES MAS FACIL DE MODIFICAR
 }
+
 function createFunc() {
+    // para el boton de crear post pregunta cantidad de post
     let cant = prompt("Cuantos posts quieres crear?");
     cant = parseInt(cant);
     console.log(cant)
@@ -56,7 +61,7 @@ function createFunc() {
 
 
 function addEvents() {
-    // AÑADE LOS EVENTOS "onclick" A TODOS LOS ELEMENTOS DE POST QUE LO NECESITEN
+    // AÑADE LOS EVENTOS NECESARIOS A TODOS LOS ELEMENTOS QUE LO NECESITEN
     let post = document.getElementsByClassName("post");
     let bt_showHide = document.getElementsByClassName("showHide");
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
@@ -76,10 +81,12 @@ function addEvents() {
 }
 
 function select(id) {
+    // SELECCIONA EL POST CUANDO LE HACE CLICK
     lastSelected = id;
 }
 
 function alternateLeft() {
+    // ACTIVA O DESACTIVA EL MENU IZQUIERDO
     changeColor()
 
     let leftMenu = document.getElementById("leftMenu");
@@ -104,15 +111,13 @@ function alternateLeft() {
 }
 
 function changeColor() {
+    // AÑADE LOS EVENTOS A LAS PALETAS DE COLOR
     let colorPaletteDiv = document.getElementsByClassName("colorPaletteDiv");
-    let hidePalettes = document.getElementById("hidePalettes");
     if (colorPaletteDiv[0].classList.contains("no-visible")) {
         colorPaletteDiv[0].classList.remove("no-visible");
-        //hidePalettes.classList.remove("no-visible");
     }
     else {
         colorPaletteDiv[0].classList.add("no-visible");
-        //hidePalettes.classList.add("no-visible");
     }
 
     let colorPalette = document.getElementsByClassName("colorPalette");
@@ -123,7 +128,7 @@ function changeColor() {
 }
 
 function thisPalette(number) {
-    
+    // APLICA UN COLOR AL ULTIMO POST NECESARIO
     let id = lastSelected;
     let post = document.getElementsByClassName("post");
     let post_head = document.getElementsByClassName("post_head");
@@ -142,6 +147,7 @@ function thisPalette(number) {
 }
 
 function resetTime(id) {
+    // RESETEA LOS TIMES DE TRANSICION
     let post_content = document.getElementsByClassName("post_content");
     post_content[id].style.transitionDuration = ".5s";
     let post_options = document.getElementsByClassName("post_options");
@@ -153,6 +159,8 @@ function resetTime(id) {
 
 
 function toggleOptions(id) {
+    // MUESTRA O OCULTA LOS POST OPTIONS
+
     let post_options = document.getElementsByClassName("post_options");
     let post_options_content = document.getElementsByClassName("post_options_content");
     let post_content = document.getElementsByClassName("post_content");
@@ -184,12 +192,14 @@ function toggleOptions(id) {
 }
 
 function showOptionsContent(id) {
+    // MUESTRA TODO AL CABO DE 400 ms
     let post_options_content = document.getElementsByClassName("post_options_content");
     post_options_content[id].classList.remove("hide");
     post_options_content[id].classList.add("showing");
 }
 
 function opt_GoLeft(id) {
+    // MOVER EL MENU DE OPCIONES DE POST A LA IZQUIERDA
     let div = document.getElementsByClassName("post_options_options");
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
     let btRight = document.getElementsByClassName("bt_optionsGoRight");
@@ -206,6 +216,7 @@ function opt_GoLeft(id) {
 }
 
 function opt_GoRight(id) {
+    // MOVER EL MENU DE OPCIONES DE POST A LA DERECHA
     let div = document.getElementsByClassName("post_options_options");
     let btLeft = document.getElementsByClassName("bt_optionsGoLeft");
     let btRight = document.getElementsByClassName("bt_optionsGoRight");
@@ -225,6 +236,7 @@ function opt_GoRight(id) {
 
 
 function checkInput() {
+    // BARRA DE BUSQUEDA
     let header = document.getElementsByClassName("post_header");
     let input = document.getElementById("searchBar");
     let post = document.getElementsByClassName("post");
@@ -242,13 +254,46 @@ function checkInput() {
 }
 
 function removeMe(id) {
+    // ELIMINA EL POST
     let post = document.getElementsByClassName("post");
     post[id].remove();
     addEvents();
 }
 
+
+// TODAS LAS OPCIONES
+
+
+// OCULTAR AUTOMATICAMENTE
+/*
+function mouseOverInput() {
+    mouseOverInputs = true;
+}
+function mouseOutInput() {
+    mouseOverInputs = false;
+}
+
+let inputs = document.getElementsByClassName("gridSizeInput");
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("focusout", (event) => {
+        if (!mouseOverInputs)
+            options()
+    })
+}
+let buttonOptions = document.getElementsByClassName("buttonOptions");
+buttonOptions[0].addEventListener("focusout", (event) => {
+    if (!mouseOverInputs)
+        options()
+})*/
+
+
+// MOSTRAR O OCULTAR
 function options() {
     let optionsMenu = document.getElementById("optionsMenu");
+    let leftMenu = document.getElementById("leftMenu");
+    if (leftMenu.classList.contains("opened")) {
+        alternateLeft();
+    }
     if (optionsMenu.classList.contains("no-visible")) {
         optionsMenu.classList.remove("no-visible");
     } else {
@@ -256,6 +301,7 @@ function options() {
     }
 }
 
+// SET DEL TAMAÑO
 function setGridSize() {
     let inputs = document.getElementsByClassName("gridSizeInput");
     let width = inputs[1].value;

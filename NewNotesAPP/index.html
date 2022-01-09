@@ -10,26 +10,40 @@
     <link rel="stylesheet" href="css/mainStyles.css">
     <link rel="stylesheet" href="css/postStyles.css">
     <link rel="stylesheet" href="css/topBarStyles.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
     <div id="upMenu">
         <div id="search">
             <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="36" oninput="checkInput()">
-            <!--<button><img src="img/lupa.png" width="24px" height="24px"></button>-->
+            <button>Filtrar</button>
         </div>
         <div id="createPost" class="menuObject">
             <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
         </div>
         <div id="options" class="menuObject">
-            <button onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
+            <button class="buttonOptions" onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
             <div id="optionsMenu" class="no-visible">
-                <p>Notes grid size</p>
-                <input class="gridSizeInput" type="number" value="2" oninput="setGridSize()">
-                <p id="x">x</p>
-                <input class="gridSizeInput" type="number" value="6" oninput="setGridSize()">
+                <div class="notesGrid">
+                    <p>Notes grid size</p>
+                    <input onmouseover="mouseOverInput()" onmouseout="mouseOutInput()" class="gridSizeInput" type="number" value="2" oninput="setGridSize()">
+                    <p id="x">x</p>
+                    <input onmouseover="mouseOverInput()" onmouseout="mouseOutInput()" class="gridSizeInput" type="number" value="6" oninput="setGridSize()">
+                </div>
+                <div class="saveLoad">
+                    <div class="save">
+                        <p>Save</p>
+                        <button><img src="img/save.png" width="28px" height="28px"></button>
+                    </div>
+                    <div class="load">
+                        <p>Load</p>
+                        <button><img src="img/upload.png" width="28px" height="28px"></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
     <div id="leftMenu" class="no-visible closed">
         <button id="alternateLeftMenu" onclick="alternateLeft()">></button>
         <div class="colorPaletteDiv no-visible">
@@ -43,7 +57,7 @@
         </div>
     </div>
 
-    <div id="posts" class="w6 h3"> 
+    <div id="posts" class="w6 h2"> 
         <div class="post no-visible" id="copyPost">
             <div class="post_head">
                 <input type="text" class="post_header" placeholder="Click to edit">

@@ -8,7 +8,6 @@
     z-index: 1000;
 }
 
-
 #search {
     position: absolute;
     width: 25%;
@@ -32,25 +31,23 @@
     top: -1px;
     right: -2px;
     padding: 0;
-    width: 28px;
+    width: 45px;
     height: 30px;
     background-color: inherit;
     border: inherit;
-    
+    font-weight: 600;
+    font-size: 0.8rem;
 }
 #search button img {
     margin-top: 1px;
 }
-
-
-
 
 .menuObject {
     position: absolute;
     top: 5px;
     margin-left: 0px;
 }
-.menuObject button{
+.menuObject > button{
     border-radius: 2px;
     border: none;
     padding: 0;
@@ -73,20 +70,33 @@
     margin-left: 40px;
 }
 
-#optionsMenu {
-    position: absolute;
+.menuObject button:nth-child(1):focus {
+    outline: 1px solid black;
+    background: #666;
+}
+
+.notesGrid {
     width: 130px;
     height: 70px;
+}
+
+
+#optionsMenu {
+    position: relative;
+    width: 130px;
+    height: 150px;
     background: white;
     z-index: 500;
     margin-top: 10px;
+    border-radius: 5px;
+    font-weight: 700;
 }
 
 #optionsMenu.no-visible {
     display: none;
 }
 
-#optionsMenu p:nth-child(1) {
+.notesGrid p:nth-child(1) {
     position: absolute;
     margin-top: 5px;
     margin-left: 5px;
@@ -115,4 +125,44 @@
     position: absolute;
     margin-top: 65px;
     margin-left: 50px;
+}
+
+.saveLoad {
+    display: flex;
+    width: 130px;
+    height: 50px;
+}
+
+.saveLoad button {
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 2px;
+    margin-top: -15px;
+    transition: .5s;
+}
+
+.saveLoad img {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.save {
+    width: 60px;
+    height: 30px;
+    margin-left: 10px;
+}
+.save p {
+    margin-left: 5px;
+}
+
+.load {
+    width: 60px;
+    height: 30px;
+    margin-left: 5px;
+}
+.load p {
+    margin-left: 5px;
 }

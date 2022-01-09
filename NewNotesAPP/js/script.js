@@ -355,6 +355,11 @@ window.onload = function(ev) {
     createPost(18);
     addEvents();
     setPaletteColors();
+    
+}
+// 491 * 931 mi movil
+// 
+function sizeAlert() {
     let myVar = [window.innerWidth, window.innerHeight];
-    alert(myVar)
+    alert(myVar);
 }

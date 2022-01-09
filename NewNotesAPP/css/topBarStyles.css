@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    display: flex;
 }
 
 #search {
@@ -43,9 +44,9 @@
 }
 
 .menuObject {
-    position: absolute;
+    position: relative;
     top: 5px;
-    margin-left: 0px;
+    margin-left: 5px;
 }
 .menuObject > button{
     border-radius: 2px;
@@ -66,9 +67,6 @@
 #createPost {
     margin-left: 5px;
 }
-#options {
-    margin-left: 40px;
-}
 
 .menuObject button:nth-child(1):focus {
     outline: 1px solid black;
@@ -82,7 +80,7 @@
 
 
 #optionsMenu {
-    position: relative;
+    position: absolute;
     width: 130px;
     height: 150px;
     background: white;

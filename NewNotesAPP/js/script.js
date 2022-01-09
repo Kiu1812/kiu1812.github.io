@@ -46,13 +46,13 @@ function createPost(cant) {
 
     // ESTE CREATE POST TIENE 130 LINEAS MENOS QUE EL OTRO 
     // ADEMAS ES MAS FACIL DE MODIFICAR
+    addEvents()
 }
 
 function createFunc() {
     // para el boton de crear post pregunta cantidad de post
     let cant = prompt("Cuantos posts quieres crear?");
     cant = parseInt(cant);
-    console.log(cant)
     if (isNaN(cant)) {
         cant = 0;
     }
@@ -264,17 +264,92 @@ function removeMe(id) {
 // TODAS LAS OPCIONES
 
 
-// OCULTAR AUTOMATICAMENTE
+// SAVE
 /*
+let post = {
+    head: "Title Here",
+    content: "Content here",
+    color: 1,
+}
+let save = {
+    post1: post,
+    gridSize: {
+        width: 6,
+        height: 2,
+    }
+}
+*/
+
+function save() {
+    let post_header = document.getElementsByClassName("post_header");
+    let post_content = document.getElementsByClassName("post_text");
+    var save = {}
+    for (let i = 1; i < post_header.length; i++) {
+        let post = {
+            "head": post_header[i].value,
+            "content": post_content[i].value,
+        }
+        save["post"+i] = post; 
+    }
+    let postGrid = document.getElementById("posts");
+    save["gridSize"] = postGrid.classList;
+    let stringfy = JSON.stringify(save);
+    let text = btoa(stringfy);
+    var blob = new Blob([text], {type:"text/plain"});
+    var fileLink = document.createElement("a");
+    fileLink.download = "saveFile.txt";
+    fileLink.href = window.URL.createObjectURL(blob);
+    document.body.appendChild(fileLink);
+    fileLink.click();
+    fileLink.remove();
+}
+
+function load() {
+    let input = document.createElement("input");
+    input.type = "file";
+    input.click();
+    input.addEventListener("change", function(){
+        if (this.files && this.files[0]) {
+            let myFile = this.files[0];
+            let reader = new FileReader();
+            reader.addEventListener("load", function (event) {
+                let load = atob(event.target.result);
+                let data = JSON.parse(load)
+                removeMe(1);
+                createPost(Object.keys(data).length-1);
+                let post_header = document.getElementsByClassName("post_header");
+                let post_content = document.getElementsByClassName("post_text");
+                for (let i = 1; i <= Object.keys(data).length-1; i++) {
+                    post_header[i].value = data["post"+i]["head"];
+                    post_content[i].value = data["post"+i]["content"];
+                }
+                let inputs = document.getElementsByClassName("gridSizeInput");
+            
+                inputs[1].value = data["gridSize"][0].slice(1,2);
+                inputs[0].value = data["gridSize"][1].slice(1,2);
+                setGridSize();
+            })
+            reader.readAsBinaryString(myFile);
+        }
+    });
+}
+
+// OCULTAR AUTOMATICAMENTE
+
 function mouseOverInput() {
     mouseOverInputs = true;
 }
 function mouseOutInput() {
     mouseOverInputs = false;
 }
-
-let inputs = document.getElementsByClassName("gridSizeInput");
+let inputs = document.getElementsByClassName("optionsInput");
 for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener("mouseover", (event) => {
+        mouseOverInput()
+    })
+    inputs[i].addEventListener("mouseout", (event) => {
+        mouseOutInput()
+    })
     inputs[i].addEventListener("focusout", (event) => {
         if (!mouseOverInputs)
             options()
@@ -284,7 +359,7 @@ let buttonOptions = document.getElementsByClassName("buttonOptions");
 buttonOptions[0].addEventListener("focusout", (event) => {
     if (!mouseOverInputs)
         options()
-})*/
+})
 
 
 // MOSTRAR O OCULTAR
@@ -329,6 +404,8 @@ function setGridSize() {
     }
 }
 
+
+
 // FUNCION AL CARGAR LA VENTANA
 function setPaletteColors() {
     // GENERATE AND SETS THE COLOR OF THE PALETTE VIEW
@@ -352,13 +429,14 @@ function setPaletteColors() {
     }
 }
 window.onload = function(ev) {
-    createPost(18);
-    addEvents();
+    createPost(1);
     setPaletteColors();
     
 }
+
+/* ELIMINAR ESTO */
 // 491 * 931 mi movil
-// 
+// 393 * 706 gianni
 function sizeAlert() {
     let myVar = [window.innerWidth, window.innerHeight];
     alert(myVar);

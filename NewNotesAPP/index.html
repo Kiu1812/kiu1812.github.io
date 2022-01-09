@@ -26,18 +26,18 @@
             <div id="optionsMenu" class="no-visible">
                 <div class="notesGrid">
                     <p>Notes grid size</p>
-                    <input onmouseover="mouseOverInput()" onmouseout="mouseOutInput()" class="gridSizeInput" type="number" value="2" oninput="setGridSize()">
+                    <input class="gridSizeInput optionsInput" type="number" value="2" oninput="setGridSize()">
                     <p id="x">x</p>
-                    <input onmouseover="mouseOverInput()" onmouseout="mouseOutInput()" class="gridSizeInput" type="number" value="6" oninput="setGridSize()">
+                    <input class="gridSizeInput optionsInput" type="number" value="6" oninput="setGridSize()">
                 </div>
                 <div class="saveLoad">
                     <div class="save">
                         <p>Save</p>
-                        <button><img src="img/save.png" width="28px" height="28px"></button>
+                        <button class="optionsInput" onclick="save()"><img src="img/save.png" width="28px" height="28px"></button>
                     </div>
                     <div class="load">
                         <p>Load</p>
-                        <button><img src="img/upload.png" width="28px" height="28px"></button>
+                        <button class="optionsInput" onclick="load()"><img src="img/upload.png" width="28px" height="28px"></button>
                     </div>
                 </div>
             </div>

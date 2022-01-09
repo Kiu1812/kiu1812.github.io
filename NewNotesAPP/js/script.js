@@ -355,4 +355,6 @@ window.onload = function(ev) {
     createPost(18);
     addEvents();
     setPaletteColors();
+    let myVar = [window.innerWidth, window.innerHeight];
+    alert(myVar)
 }

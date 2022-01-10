@@ -1,5 +1,42 @@
-@media screen and (max-device-width: 1090px){
-    #posts {
-        background: red;
+@media screen and (max-device-width: 600px){
+    .colorPaletteDiv {
+        width: 180px;
+    }
+    #leftMenu.opened #alternateLeftMenu {
+        left: 180px;
+    }
+    .notesGrid {
+        display: none;
+    }
+    #optionsMenu {
+        height: 80px;
+    }
+    .saveLoad {
+        margin-top: -5px;
+    }
+    #posts.w6 .post {
+        width: 350px;
+    }
+    #posts.w6 .post_options_options {
+        max-height: 50px;
+        overflow: scroll;
+        margin-left: 5px;
+    }
+    #posts.w6 .post_options_options div {
+        width: 350px;
+        margin-left: 20px;
+        margin-top: 5px;
+    }
+    #posts.w6 .bt_optionsGoRight {
+        display: none;
+    }
+    .post_options_options div:not(:nth-child(1)) {
+        margin-left: 0px;
+    }
+    .post_options_options div h4 {
+        margin-left: -10px;
+    }
+    #posts.w6 .showHide {
+        margin-left: 165.5px;
     }
 }

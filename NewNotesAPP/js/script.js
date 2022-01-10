@@ -44,8 +44,6 @@ function createPost(cant) {
 
     lastSelected = 0;
 
-    // ESTE CREATE POST TIENE 130 LINEAS MENOS QUE EL OTRO 
-    // ADEMAS ES MAS FACIL DE MODIFICAR
     addEvents()
 }
 
@@ -131,6 +129,11 @@ function thisPalette(number) {
     // APLICA UN COLOR AL ULTIMO POST NECESARIO
     let id = lastSelected;
     let post = document.getElementsByClassName("post");
+    let colorSelector = document.getElementsByClassName("colorSelector");
+    for (let i = 0; i < palettes.length; i++) {
+        colorSelector[id].classList.remove("palette"+i);
+    }
+    colorSelector[id].classList.add("palette"+number);
     let post_head = document.getElementsByClassName("post_head");
     let post_content = document.getElementsByClassName("post_content");
     post_content[id].style.transitionDuration = "0s";
@@ -271,23 +274,18 @@ let post = {
     content: "Content here",
     color: 1,
 }
-let save = {
-    post1: post,
-    gridSize: {
-        width: 6,
-        height: 2,
-    }
-}
 */
 
 function save() {
     let post_header = document.getElementsByClassName("post_header");
     let post_content = document.getElementsByClassName("post_text");
+    let colorSelector = document.getElementsByClassName("colorSelector");
     var save = {}
     for (let i = 1; i < post_header.length; i++) {
         let post = {
             "head": post_header[i].value,
             "content": post_content[i].value,
+            "color": colorSelector[i].classList,
         }
         save["post"+i] = post; 
     }
@@ -303,7 +301,7 @@ function save() {
     fileLink.click();
     fileLink.remove();
 }
-
+// col 22
 function load() {
     let input = document.createElement("input");
     input.type = "file";
@@ -315,19 +313,31 @@ function load() {
             reader.addEventListener("load", function (event) {
                 let load = atob(event.target.result);
                 let data = JSON.parse(load)
-                removeMe(1);
+                let post = document.getElementsByClassName("post");
+                let length = post.length;
+                for (let i = 1; i < length; i++) {
+                    removeMe(i);
+                    i--;
+                    length--;
+                }
                 createPost(Object.keys(data).length-1);
                 let post_header = document.getElementsByClassName("post_header");
                 let post_content = document.getElementsByClassName("post_text");
+                let colorSelector = document.getElementsByClassName("colorSelector");
                 for (let i = 1; i <= Object.keys(data).length-1; i++) {
                     post_header[i].value = data["post"+i]["head"];
                     post_content[i].value = data["post"+i]["content"];
+                    console.log(data["post"+i]["color"][1].slice(7,8))
+                    lastSelected = i;
+                    thisPalette(data["post"+i]["color"][1].slice(7,8));
                 }
                 let inputs = document.getElementsByClassName("gridSizeInput");
-            
-                inputs[1].value = data["gridSize"][0].slice(1,2);
-                inputs[0].value = data["gridSize"][1].slice(1,2);
-                setGridSize();
+                
+                if (window.innerWidth > 600) {
+                    inputs[1].value = data["gridSize"][0].slice(1,2);
+                    inputs[0].value = data["gridSize"][1].slice(1,2);
+                    setGridSize();
+                }
             })
             reader.readAsBinaryString(myFile);
         }
@@ -429,7 +439,7 @@ function setPaletteColors() {
     }
 }
 window.onload = function(ev) {
-    createPost(1);
+    createPost(5);
     setPaletteColors();
     
 }
@@ -437,6 +447,8 @@ window.onload = function(ev) {
 /* ELIMINAR ESTO */
 // 491 * 931 mi movil
 // 393 * 706 gianni
+// 384 * 679 eric
+
 function sizeAlert() {
     let myVar = [window.innerWidth, window.innerHeight];
     alert(myVar);

@@ -1,9 +1,9 @@
 @media screen and (max-device-width: 600px){
     .colorPaletteDiv {
-        width: 180px;
+        width: 350px;
     }
     #leftMenu.opened #alternateLeftMenu {
-        left: 180px;
+        left: 350px;
     }
     .notesGrid {
         display: none;

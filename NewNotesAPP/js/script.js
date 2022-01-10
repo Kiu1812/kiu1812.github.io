@@ -51,9 +51,7 @@ function createFunc() {
     // para el boton de crear post pregunta cantidad de post
     let cant = prompt("Cuantos posts quieres crear?");
     cant = parseInt(cant);
-    if (isNaN(cant)) {
-        cant = 0;
-    }
+    if (isNaN(cant)) cant = 0;
     createPost(cant)
 }
 
@@ -77,9 +75,8 @@ function addEvents() {
         post[i].setAttribute("onmouseover", "resetTime("+i+")");
     }
 }
-
+// SELECCIONA EL POST CUANDO LE HACE CLICK
 function select(id) {
-    // SELECCIONA EL POST CUANDO LE HACE CLICK
     lastSelected = id;
 }
 
@@ -130,9 +127,8 @@ function thisPalette(number) {
     let id = lastSelected;
     let post = document.getElementsByClassName("post");
     let colorSelector = document.getElementsByClassName("colorSelector");
-    for (let i = 0; i < palettes.length; i++) {
+    for (let i = 0; i < palettes.length; i++) 
         colorSelector[id].classList.remove("palette"+i);
-    }
     colorSelector[id].classList.add("palette"+number);
     let post_head = document.getElementsByClassName("post_head");
     let post_content = document.getElementsByClassName("post_content");
@@ -248,11 +244,11 @@ function checkInput() {
         let check1 = header[i].value.toLowerCase();
         let check2 = input.value.toLowerCase();
 
-        if (check1.includes(check2)) {
+        if (check1.includes(check2)) 
             post[i].classList.remove("no-visible");
-        } else {
+        else 
             post[i].classList.add("no-visible");
-        }
+        
     }
 }
 
@@ -267,15 +263,9 @@ function removeMe(id) {
 // TODAS LAS OPCIONES
 
 
-// SAVE
-/*
-let post = {
-    head: "Title Here",
-    content: "Content here",
-    color: 1,
-}
-*/
+// SAVE / LOAD
 
+// SAVE
 function save() {
     let post_header = document.getElementsByClassName("post_header");
     let post_content = document.getElementsByClassName("post_text");
@@ -301,7 +291,7 @@ function save() {
     fileLink.click();
     fileLink.remove();
 }
-// col 22
+// LOAD
 function load() {
     let input = document.createElement("input");
     input.type = "file";
@@ -354,12 +344,8 @@ function mouseOutInput() {
 }
 let inputs = document.getElementsByClassName("optionsInput");
 for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener("mouseover", (event) => {
-        mouseOverInput()
-    })
-    inputs[i].addEventListener("mouseout", (event) => {
-        mouseOutInput()
-    })
+    inputs[i].addEventListener("mouseover", (event) => mouseOverInput())
+    inputs[i].addEventListener("mouseout", (event) => mouseOutInput())
     inputs[i].addEventListener("focusout", (event) => {
         if (!mouseOverInputs)
             options()
@@ -367,7 +353,8 @@ for (let i = 0; i < inputs.length; i++) {
 }
 let buttonOptions = document.getElementsByClassName("buttonOptions");
 buttonOptions[0].addEventListener("focusout", (event) => {
-    if (!mouseOverInputs)
+    let optionsMenu = document.getElementById("optionsMenu");
+    if (!mouseOverInputs && !(optionsMenu.classList.contains("no-visible")))
         options()
 })
 
@@ -376,14 +363,13 @@ buttonOptions[0].addEventListener("focusout", (event) => {
 function options() {
     let optionsMenu = document.getElementById("optionsMenu");
     let leftMenu = document.getElementById("leftMenu");
-    if (leftMenu.classList.contains("opened")) {
+    if (leftMenu.classList.contains("opened")) 
         alternateLeft();
-    }
-    if (optionsMenu.classList.contains("no-visible")) {
+    if (optionsMenu.classList.contains("no-visible")) 
         optionsMenu.classList.remove("no-visible");
-    } else {
+    else 
         optionsMenu.classList.add("no-visible");
-    }
+    
 }
 
 // SET DEL TAMAÑO
@@ -450,6 +436,5 @@ window.onload = function(ev) {
 // 384 * 679 eric
 
 function sizeAlert() {
-    let myVar = [window.innerWidth, window.innerHeight];
-    alert(myVar);
+    let myVar = [window.innerWidth, window.innerHeight]; alert(myVar);
 }

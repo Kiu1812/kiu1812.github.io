@@ -1,14 +1,14 @@
 #posts.w6 .post {
-    width: 278.5px;
+    width: 275px;
 }
 #posts.w5 .post {
-    width: 340px;
+    width: 336px;
 }
 #posts.w4 .post {
-    width: 432px;
+    width: 427.5px;
 }
 #posts.w3 .post {
-    width: 587px;
+    width: 580px;
 }
 
 
@@ -81,7 +81,7 @@
     height: 400px;
 }
 #posts.h1 .post {
-    height: 815px;
+    height: 830px;
 }
 
 
@@ -99,10 +99,10 @@
     height: 315px;
 }
 #posts.h1 .post_content.small {
-    height: 665px;
+    height: 680px;
 }
 #posts.h1 .post_content.big {
-    height: 730px;
+    height: 745px;
 }
 
 #posts.h3 .post_options.showing {
@@ -118,10 +118,10 @@
     margin-top: 391.5px;
 }
 #posts.h1 .post_options.showing {
-    margin-top: 744px;
+    margin-top: 759px;
 }
 #posts.h1 .post_options.hide {
-    margin-top: 806.5px;
+    margin-top: 821.5px;
 }
 
 #posts.w6 .showHide {

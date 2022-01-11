@@ -78,6 +78,13 @@
     height: 70px;
 }
 
+.upMenuOpen {
+    display: none;
+}
+.upMenu {
+    width: 100%;
+    display: flex;
+}
 
 #optionsMenu {
     position: absolute;

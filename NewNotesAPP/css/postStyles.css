@@ -1,7 +1,50 @@
 #posts {
     position: absolute;
     top: 55px;
-    left: 27px;
+    /* left: 27px; */
+    left: 55px;
+    max-width: 1850px;
+    max-height: 880px;
+    overflow: scroll;
+    overflow-y: auto;
+}
+#posts::-webkit-scrollbar {
+    border-radius: 5px;
+    width: 5px;
+}
+
+#posts::-webkit-scrollbar-thumb {
+    background-color: #555555;
+    border-radius: 5px;
+}
+
+#posts::-webkit-scrollbar-thumb:hover {
+    background-color: #aaaaaa;
+}
+#posts::-webkit-scrollbar-corner {
+    background-color: #212121;
+}
+
+.selectedMultiple {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    width: 102%;
+    height: 102%;
+    border-radius: 7.5px;
+    content: "";
+    z-index: 3;
+    transition: .2s;
+}
+
+.selectedMultiple.yes {
+    background: rgba(0,255,0,0.1);
+    backdrop-filter: blur(0px);
+}
+
+.selectedMultiple.no {
+    background: rgba(255,0,0,0.1);
+    backdrop-filter: blur(2px);
 }
 
 .post {

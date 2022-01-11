@@ -14,54 +14,66 @@
 </head>
 <body>
     <div id="upMenu">
+        <div class="menuObject upMenuOpen">
+            <button onclick="alternateTop()">></button>
+        </div>
         <div id="search">
             <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="36" oninput="checkInput()">
             <button>Filtrar</button>
         </div>
-        <div id="createPost" class="menuObject">
-            <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
-        </div>
-        <div id="options" class="menuObject">
-            <button class="buttonOptions" onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
-            <div id="optionsMenu" class="no-visible">
-                <div class="notesGrid">
-                    <p>Notes grid size</p>
-                    <input class="gridSizeInput optionsInput" type="number" value="2" oninput="setGridSize()">
-                    <p id="x">x</p>
-                    <input class="gridSizeInput optionsInput" type="number" value="6" oninput="setGridSize()">
-                </div>
-                <div class="saveLoad">
-                    <div class="save">
-                        <p>Save</p>
-                        <button class="optionsInput" onclick="save()"><img src="img/save.png" width="28px" height="28px"></button>
+        <div class="upMenu no-visible">
+            <div id="createPost" class="menuObject">
+                <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
+            </div>
+            <div id="options" class="menuObject">
+                <button class="buttonOptions" onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
+                <div id="optionsMenu" class="no-visible">
+                    <div class="notesGrid">
+                        <p>Notes grid size</p>
+                        <input class="gridSizeInput optionsInput" type="number" value="2" oninput="setGridSize()">
+                        <p id="x">x</p>
+                        <input class="gridSizeInput optionsInput" type="number" value="6" oninput="setGridSize()">
                     </div>
-                    <div class="load">
-                        <p>Load</p>
-                        <button class="optionsInput" onclick="load()"><img src="img/upload.png" width="28px" height="28px"></button>
+                    <div class="saveLoad">
+                        <div class="save">
+                            <p>Save</p>
+                            <button class="optionsInput" onclick="save()"><img src="img/save.png" width="28px" height="28px"></button>
+                        </div>
+                        <div class="load">
+                            <p>Load</p>
+                            <button class="optionsInput" onclick="load()"><img src="img/upload.png" width="28px" height="28px"></button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sizeAlert menuObject">
-            <button onclick="sizeAlert()">AL</button>
+            <div class="sizeAlert menuObject">
+                <button onclick="sizeAlert()">AL</button>
+            </div>
         </div>
     </div>
 
     <div id="leftMenu" class="no-visible closed">
         <button id="alternateLeftMenu" onclick="alternateLeft()">></button>
         <div class="colorPaletteDiv no-visible">
-            <div id="hidePalettes">
-                <div class="no-visible" id="copyPalette">
-                    <span class="color color1"></span>
-                    <span class="color color2"></span>
-                    <span class="color color3"></span>
+            <div id="colorPalettes">
+                <div id="hidePalettes">
+                    <div class="no-visible" id="copyPalette">
+                        <span class="color color1"></span>
+                        <span class="color color2"></span>
+                        <span class="color color3"></span>
+                    </div>
                 </div>
+            </div>
+            <div id="optionsColorPalette">
+                <input type="checkbox" id="multipleColor" oninput="changeSelectMode()">
+                <label for="multipleColor">Select multiple post</label>
             </div>
         </div>
     </div>
 
     <div id="posts" class="w6 h2"> 
         <div class="post no-visible" id="copyPost">
+            <span class="selectedMultiple no no-visible"></span>
             <span class="colorSelector"></span>
             <div class="post_head">
                 <input type="text" class="post_header" placeholder="Click to edit">
@@ -91,7 +103,7 @@
             </div>
         </div>
     </div>
-
+    
     <script rel="text/javascript" src="js/script.js"></script>
 </body>
 </html>

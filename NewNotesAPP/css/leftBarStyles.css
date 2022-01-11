@@ -5,32 +5,52 @@
 .colorPaletteDiv {
     position: absolute;
     z-index: 50;
-    width: 515px;
     height: fit-content;
-    max-height: 275px;
     background: white;
     padding: 10px 0 10px 0;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     border-radius: 0 10px 10px 0;
     margin-top: 339.5px;
     transition: .5s;
     left: 0;
 }
 
-.colorPaletteDiv::-webkit-scrollbar {
+#colorPalettes {
+    width: 515px;
+    max-height: 275px;
+    overflow: auto;
+    overflow-x: hidden;
+    background: #f5d2d2;
+}
+#optionsColorPalette {
+    width: 515px;
+    height: 50px;
+    position: relative;
+}
+#optionsColorPalette label {
+    cursor: pointer;
+}
+#multipleColor {
+    width: 20px;
+    height: 20px;
+    position: relative;
+    top: 5px;
+    left: 0;
+    cursor: pointer;
+}
+#colorPalettes::-webkit-scrollbar {
     border-radius: 10px;
 }
 
-.colorPaletteDiv::-webkit-scrollbar-thumb {
+#colorPalettes::-webkit-scrollbar-thumb {
     background-color: #aaaaaa;
     border-radius: 10px;
 }
 
-.colorPaletteDiv::-webkit-scrollbar-thumb:hover {
+#colorPalettes::-webkit-scrollbar-thumb:hover {
     background-color: #555555;
 }
 
@@ -75,7 +95,7 @@
     height: 70px;
     margin-top: 450px;
     pointer-events: visible;
-    z-index: 50;
+    z-index: 500;
     transition: .5s;
     
 }

@@ -17,18 +17,48 @@
     #posts.w6 .post {
         width: 350px;
     }
+    .post_options_options::-webkit-scrollbar {
+        border-radius: 10px;
+        width: 5px;
+    }
+    
+    .post_options_options::-webkit-scrollbar-thumb {
+        background-color: #aaaaaa;
+        border-radius: 10px;
+    }
+    
+    .post_options_options::-webkit-scrollbar-thumb:hover {
+        background-color: #555555;
+    }
+    .post_options_options::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
     #posts.w6 .post_options_options {
-        max-height: 50px;
+        max-height: 80px;
         overflow: scroll;
+        overflow-x: hidden;
         margin-left: 5px;
+        display: block;
+        width: 340px;
     }
     #posts.w6 .post_options_options div {
-        width: 350px;
+        width: 250px;
         margin-left: 20px;
-        margin-top: 5px;
+        margin-top: 10px;
+    }
+    #posts.w6 .post_options_options div:not(:nth-child(1)) {
+        margin-top: 25px;
+    }
+    #posts.h2 .post_content.small {
+        height: 220px;
     }
     #posts.w6 .bt_optionsGoRight {
         display: none;
+    }
+    #posts.h2 .post_options.showing {
+        margin-top: 300px;
+        height: 100px;
     }
     .post_options_options div:not(:nth-child(1)) {
         margin-left: 0px;
@@ -38,5 +68,45 @@
     }
     #posts.w6 .showHide {
         margin-left: 165.5px;
+    }
+    #posts.w6 .post_options_options .options_Remove {
+        margin-left: 54.5px;
+        margin-bottom: 15px;
+    }
+
+    #search {
+        z-index: 10;
+        width: 400px;
+        margin-left: 40px;
+    }
+    #search input {
+        width: 380px;
+    }
+    .upMenuOpen {
+        transform: rotateZ(90deg);
+        top: 0;
+        left: -5px;
+        display: block;
+        transition: .5s;
+    }
+    .upMenu {
+        position: absolute;
+        top: 40px;
+        width: 45px;
+        height: fit-content;
+        display: block;
+    }
+    .upMenu.no-visible {
+        display: none;
+    }
+    .upMenuOpen.flip {
+        transform: rotateZ(-90deg);
+        left: 5px;
+    }
+    .menuObject:not(:nth-child(1)) {
+        margin-top: 5px;
+    }
+    .upMenu > div {
+        float: left;
     }
 }

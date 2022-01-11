@@ -10,6 +10,8 @@ let palettes = [
     // relleno
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
     ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
+    ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
+    ["#AA00FF","#13C0DE","#FF7C00"], // TheGrefg
     /* TO TEST 
     ["#","#","#"],
     ["#","#","#"],
@@ -19,6 +21,7 @@ let palettes = [
 let lastSelected = 1; // El ultimo post seleccionado
 let cantPostOptions = 3;
 let mouseOverInputs = false;
+let selectMode = "normal";
 
 function createPost(cant) {
 /* CREA UNA cant DE POST DUPLICANDO UNO INVISIBLE Y DEFAULT EN EL DOM */
@@ -30,12 +33,18 @@ function createPost(cant) {
         div.classList.add("post");
         div.innerHTML = post2;
         body.appendChild(div);
-        
+        let post3 = document.getElementsByClassName("post");
+        lastSelected = post3.length-1;
+        thisPalette(1)
     }
 
+    addEvents()
+}
+
+function setDefaultPalette() {
     // le aplica una paleta por default a todos los post;
     let post = document.getElementsByClassName("post")
-    for (let i = 0; i < post.length; i++) {
+    for (let i = 0; i <= post.length; i++) {
         lastSelected = i;
         thisPalette(1)
     }
@@ -43,8 +52,6 @@ function createPost(cant) {
         resetTime(i)
 
     lastSelected = 0;
-
-    addEvents()
 }
 
 function createFunc() {
@@ -96,6 +103,9 @@ function alternateLeft() {
         for (let i = 0; i < changeColorBt.length; i++)
             changeColorBt[i].innerHTML = "Close Palettes";
     } else {
+        if (selectMode == "multiple") {
+            changeSelectMode();
+        }
         leftMenu.classList.remove("opened");
         leftMenu.classList.add("closed");
         
@@ -103,6 +113,13 @@ function alternateLeft() {
         for (let i = 0; i < changeColorBt.length; i++)
             changeColorBt[i].innerHTML = "Open Palettes";
     }
+}
+
+function alternateTop() {
+    let upMenu = document.getElementsByClassName("upMenu");
+    let upMenuOpen = document.getElementsByClassName("upMenuOpen");
+    upMenu[0].classList.toggle("no-visible");
+    upMenuOpen[0].classList.toggle("flip");
 }
 
 function changeColor() {
@@ -123,26 +140,62 @@ function changeColor() {
 }
 
 function thisPalette(number) {
-    // APLICA UN COLOR AL ULTIMO POST NECESARIO
-    let id = lastSelected;
+    // APLICA UN COLOR A LOS POST NECESARIOS
     let post = document.getElementsByClassName("post");
     let colorSelector = document.getElementsByClassName("colorSelector");
-    for (let i = 0; i < palettes.length; i++) 
-        colorSelector[id].classList.remove("palette"+i);
-    colorSelector[id].classList.add("palette"+number);
-    let post_head = document.getElementsByClassName("post_head");
-    let post_content = document.getElementsByClassName("post_content");
-    post_content[id].style.transitionDuration = "0s";
-    let post_options = document.getElementsByClassName("post_options");
-    post_options[id].style.transitionDuration = "0s";
-    let showHide = document.getElementsByClassName("showHide");
-    showHide[id].style.transitionDuration = "0s";
-    post[id].style.backgroundColor = palettes[number][0];
-    post_head[id].style.backgroundColor = palettes[number][1];
-    post_content[id].style.backgroundColor = palettes[number][1];
-    post_options[id].style.backgroundColor = palettes[number][1];
-    post[id].style.color = palettes[number][2];
-    
+    let selectedMultiple = document.getElementsByClassName("selectedMultiple");
+    let list = []
+    if (selectMode == "multiple") {
+        for (let i = 0; i < selectedMultiple.length; i++) {
+            if (selectedMultiple[i].classList.contains("yes")) 
+                list.push(i);
+        }
+    } else 
+        list.push(lastSelected)
+    for (let i = 0; i < list.length; i++) {
+        for (let j = 0; j < palettes.length; j++) 
+            colorSelector[list[i]].classList.remove("palette"+j);
+        colorSelector[list[i]].classList.add("palette"+number);
+        let post_head = document.getElementsByClassName("post_head");
+        let post_content = document.getElementsByClassName("post_content");
+        post_content[list[i]].style.transitionDuration = "0s";
+        let post_options = document.getElementsByClassName("post_options");
+        post_options[list[i]].style.transitionDuration = "0s";
+        let showHide = document.getElementsByClassName("showHide");
+        showHide[list[i]].style.transitionDuration = "0s";
+        post[list[i]].style.backgroundColor = palettes[number][0];
+        post_head[list[i]].style.backgroundColor = palettes[number][1];
+        post_content[list[i]].style.backgroundColor = palettes[number][1];
+        post_options[list[i]].style.backgroundColor = palettes[number][1];
+        post[list[i]].style.color = palettes[number][2];
+    }
+}
+function changeSelectMode() {
+    let post = document.getElementsByClassName("post");
+    let selectedMultiple = document.getElementsByClassName("selectedMultiple");
+    if (selectMode == "multiple") {
+        selectMode = "normal";
+        for (let i = 0; i < post.length; i++) {
+            selectedMultiple[i].classList.add("no-visible");
+        }
+    } else {
+        selectMode = "multiple";
+        for (let i = 0; i < post.length; i++) {
+            post[i].setAttribute("onclick", "selectMe("+i+")");
+            selectedMultiple[i].classList.remove("no-visible");
+        }
+    }
+}
+
+function selectMe(id) {
+    let selectedMultiple = document.getElementsByClassName("selectedMultiple");
+    if (selectedMultiple[id].classList.contains("yes")){
+        selectedMultiple[id].classList.remove("yes");
+        selectedMultiple[id].classList.add("no");
+    } else {
+        selectedMultiple[id].classList.add("yes");
+        selectedMultiple[id].classList.remove("no");
+    }
 }
 
 function resetTime(id) {
@@ -240,7 +293,7 @@ function checkInput() {
     let input = document.getElementById("searchBar");
     let post = document.getElementsByClassName("post");
 
-    for (let i = 0; i < header.length; i++) {
+    for (let i = 1; i < header.length; i++) {
         let check1 = header[i].value.toLowerCase();
         let check2 = input.value.toLowerCase();
 
@@ -377,7 +430,9 @@ function setGridSize() {
     let inputs = document.getElementsByClassName("gridSizeInput");
     let width = inputs[1].value;
     let height = inputs[0].value;
-    
+    let post_content = document.getElementsByClassName("post_content");
+    for (let i = 1; i<post_content.length; i++)
+        post_content[i].style.transitionDuration = "0s";
     if (width > 6) {
         inputs[1].value = 6;
         width = 6;
@@ -398,6 +453,9 @@ function setGridSize() {
         posts.classList.add("w"+width);
         posts.classList.add("h"+height);
     }
+    for (let i = 1; i<post_content.length; i++) 
+        setTimeout(resetTime.bind(null, i), 400);
+    
 }
 
 
@@ -425,8 +483,13 @@ function setPaletteColors() {
     }
 }
 window.onload = function(ev) {
-    createPost(5);
+    if (window.opera && opera.toString() == "[object Opera]"){
+        console.log("hola")
+    }
+    
+    createPost(6);
     setPaletteColors();
+    setDefaultPalette();
     
 }
 

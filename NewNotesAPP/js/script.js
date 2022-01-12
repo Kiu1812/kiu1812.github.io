@@ -62,6 +62,32 @@ function createFunc() {
     createPost(cant)
 }
 
+function removeMultiple() {
+    let removeConfirmBT = document.getElementById("removeConfirm");
+    if (removeConfirmBT.classList.contains("no-visible")) {
+        removeConfirmBT.classList.toggle("no-visible");
+        changeSelectMode();
+    } else {
+        removeConfirmBT.classList.toggle("no-visible");
+        changeSelectMode()
+    }
+}
+
+function removeConfirmed() {
+    let selectedMultiple = document.getElementsByClassName("selectedMultiple");
+    let list = []
+    for (let i = 0; i < selectedMultiple.length; i++) {
+        if (selectedMultiple[i].classList.contains("yes")) 
+            list.push(i);
+    }
+    for (let i = 0; i < list.length; i++) {
+        let post = document.getElementsByClassName("post");
+        post[list[i]].remove()
+        for (j = 0; j < list.length; j++) {
+            list[j]--;
+        }
+    }
+}
 
 function addEvents() {
     // AÑADE LOS EVENTOS NECESARIOS A TODOS LOS ELEMENTOS QUE LO NECESITEN
@@ -105,6 +131,9 @@ function alternateLeft() {
     } else {
         if (selectMode == "multiple") {
             changeSelectMode();
+            let multipleColor = document.getElementById("multipleColor");
+            if (multipleColor.checked)
+                multipleColor.checked = false;
         }
         leftMenu.classList.remove("opened");
         leftMenu.classList.add("closed");
@@ -178,6 +207,7 @@ function changeSelectMode() {
         for (let i = 0; i < post.length; i++) {
             selectedMultiple[i].classList.add("no-visible");
         }
+        addEvents()
     } else {
         selectMode = "multiple";
         for (let i = 0; i < post.length; i++) {

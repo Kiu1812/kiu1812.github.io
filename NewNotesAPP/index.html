@@ -25,6 +25,12 @@
             <div id="createPost" class="menuObject">
                 <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
             </div>
+            <div id="removePosts" class="menuObject">
+                <button onclick="removeMultiple()"><img src="img/remove.png" width="24px" height="24px"></button>
+                <div id="removeConfirm" class="no-visible">
+                    <button onclick="removeConfirmed()">REMOVE</button>
+                </div>
+            </div>
             <div id="options" class="menuObject">
                 <button class="buttonOptions" onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
                 <div id="optionsMenu" class="no-visible">
@@ -45,6 +51,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="sizeAlert menuObject">
                 <button onclick="sizeAlert()">AL</button>

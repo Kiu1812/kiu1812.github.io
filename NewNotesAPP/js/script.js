@@ -56,10 +56,12 @@ function setDefaultPalette() {
 
 function createFunc() {
     // para el boton de crear post pregunta cantidad de post
-    let cant = prompt("Cuantos posts quieres crear?");
-    cant = parseInt(cant);
-    if (isNaN(cant)) cant = 0;
-    createPost(cant)
+    if (selectMode != "multiple") {
+        let cant = prompt("Cuantos posts quieres crear?");
+        cant = parseInt(cant);
+        if (isNaN(cant)) cant = 0;
+        createPost(cant)
+    }
 }
 
 function removeMultiple() {
@@ -488,7 +490,52 @@ function setGridSize() {
     
 }
 
+function alternateGroupMenu() {
+    document.getElementById("groupManager").classList.toggle("no-visibleImportant");
+}
 
+function addGroup() {
+    let nameGroup = document.getElementById("nameGroup");
+    let optionsAllGroups = document.getElementsByClassName("optionsAllGroups");
+    let allGroups = document.getElementsByClassName("allGroups");
+    let isCreated = false;
+    for (let i = 0; i < optionsAllGroups.length; i++) {
+        if (optionsAllGroups[i].value == nameGroup.value) {
+            isCreated = true;
+            console.log("esta");  
+        } 
+    }
+    if (isCreated) {
+        let post = document.getElementsByClassName("groups");
+        if (!post[lastSelected].classList.contains(nameGroup.value)) {
+            post[lastSelected].classList.add(nameGroup.value);
+            let state = document.getElementsByClassName("groupManagerState");
+            state[0].innerHTML = "Group added to note";
+            state[0].style.color = "lightgreen";
+            /*
+            QUE SE DIFUMINE EL POST SELECCIONADO CON
+            LA LISTA DE GRUPOS DE SE POST
+            Y PODER ACTIVAR ESTA OPCION PARA QUE SE VEA EN TODOS
+            */
+        }
+    } else {
+        let option = document.createElement("option");
+        option.classList.add("optionsAllGroups");
+        option.value = nameGroup.value;
+        option.innerHTML = nameGroup.value;
+        allGroups[0].appendChild(option);
+        console.log("hola2")
+        let state = document.getElementsByClassName("groupManagerState");
+        state[0].innerHTML = "New group created";
+        state[0].style.color = "lightgreen";
+    }
+}
+
+function checkSelection() {
+    let nameGroup = document.getElementById("nameGroup");
+    let allGroups = document.getElementsByClassName("allGroups");
+    nameGroup.value = allGroups[0].value;
+}
 
 // FUNCION AL CARGAR LA VENTANA
 function setPaletteColors() {
@@ -530,4 +577,50 @@ window.onload = function(ev) {
 
 function sizeAlert() {
     let myVar = [window.innerWidth, window.innerHeight]; alert(myVar);
+}
+
+
+/* DRAGABLE ELEMENT */
+
+dragElement(document.getElementById("groupManager"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "Header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
 }

@@ -92,7 +92,7 @@
 #posts.h3 .post_content.big {
     height: 171px;
 }
-#posts.h2 .post_content.small {
+#posts.h2 .post_content.small, .post_group_manager{
     height: 250px;
 }
 #posts.h2 .post_content.big {
@@ -125,7 +125,7 @@
 }
 
 #posts.w6 .showHide {
-    margin-left: 130.75px;
+    margin-left: 126.75px;
 }
 #posts.w5 .showHide {
     margin-left: 159.5px;

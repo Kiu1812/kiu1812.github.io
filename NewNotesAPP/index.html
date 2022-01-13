@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/gridSizeStylesMini.css">
+    <title>Notes</title>
+    <link rel="stylesheet" href="css/gridSizeStyles.css">
     <link rel="stylesheet" href="css/leftBarStyles.css">
     <link rel="stylesheet" href="css/mainStyles.css">
     <link rel="stylesheet" href="css/postStyles.css">
@@ -21,7 +21,7 @@
             <input type="text" placeholder="Search notes by title here" id="searchBar" maxlength="36" oninput="checkInput()">
             <button>Filtrar</button>
         </div>
-        <div class="upMenu no-visible">
+        <div class="upMenu">
             <div id="createPost" class="menuObject">
                 <button onclick="createFunc()"><img src="img/create.png" width="24px" height="24px"></button>
             </div>
@@ -30,6 +30,9 @@
                 <div id="removeConfirm" class="no-visible">
                     <button onclick="removeConfirmed()">REMOVE</button>
                 </div>
+            </div>
+            <div id="groups" class="menuObject">
+                <button onclick="alternateGroupMenu()"><img src="img/group.png" width="24px" height="24px"></button>
             </div>
             <div id="options" class="menuObject">
                 <button class="buttonOptions" onclick="options()"><img src="img/settings.png" width="24px" height="24px"></button>
@@ -80,6 +83,7 @@
 
     <div id="posts" class="w6 h2"> 
         <div class="post no-visible" id="copyPost">
+            <span class="groups"></span>
             <span class="selectedMultiple no no-visible"></span>
             <span class="colorSelector"></span>
             <div class="post_head">
@@ -89,6 +93,7 @@
                 <span class="post_content_border"></span>
                 <textarea class="post_text" placeholder="Click to edit"></textarea>
             </div>
+           
             <div class="post_options hide">
                 <button class="showHide hide">></button>
                 <div class="post_options_content hide">
@@ -97,10 +102,14 @@
                     <div class="post_options_options set1">
                         <div class="options_Color">
                             <h4>Colors</h4>
-                            <button class="changeColor">Open Palettes</button>
+                            <button class="changeColor buttonInsideOptions">Open Palettes</button>
                         </div>
                         <div class="options_Group">
                             <h4>Groups</h4>
+                            <span>Current Groups</span>
+                            <select class="currentGroups">
+                                <option value="none">---</option>
+                            </select>
                         </div>
                         <div class="options_Remove">
                             <button class="removeBT">REMOVE</button>
@@ -110,7 +119,33 @@
             </div>
         </div>
     </div>
-    
+    <!--
+    <div class="post_group_manager no-visibleImportant" id="groupManager">
+    -->
+    <div class="post_group_manager" id="groupManager">
+        <div id="groupManagerHeader">
+            Click and drag here to move
+            <button onclick="alternateGroupMenu()">X</button>
+        </div>
+        <h3>Group Manager</h3>
+        <div class="allGroupsDiv">
+            <span>All Groups</span>
+            <select class="allGroups" oninput="checkSelection()">
+                <option class="optionsAllGroups" value="none">---</option>
+            </select>
+            <div class="createGroup">
+                <input type="text" placeholder="Name of the group" id="nameGroup">
+                <button onclick="addGroup()" class="createGroupBT">Add Group</button>
+            </div>
+        </div>
+        <div class="currentGroupsDiv">
+            <span>Current Groups</span>
+            <select class="currentGroups">
+                <option class="optionsCurrentGroups" value="none">---</option>
+            </select>
+        </div>
+        <p class="groupManagerState"></p>
+    </div>
     <script rel="text/javascript" src="js/script.js"></script>
 </body>
 </html>

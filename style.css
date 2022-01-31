@@ -1,4 +1,46 @@
+@media screen and (max-width:600px) {
+    #free-time > h2{
+        margin-top: -5px !important;
+    }
+    #languages {
+        font-size: .9rem
+    }
+}
+
 body {
-    background: #212121;
-    color: white;
+    background: #1E2022;
+    color: #52ABEA;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 98vh;
+    width: 98vw;
+}
+
+#title {
+    font-size: 2rem;
+}
+
+#languages {
+    list-style: none;
+    display: flex;
+    margin-left: -50px;
+}
+#languages > li {
+    margin-left: 20px;
+}
+
+#free-time > h2 {
+    margin-top: 30px;
+}
+
+.container {
+    position: relative;
+    margin: 20px;
+    height: 150px;
+    width: fit-content;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    background: #353636;
+    border: 1rem solid #1c1d1d;
+    border-radius: 2rem;
+    box-shadow: -.5rem -.5rem .7rem #353636, .5rem .5rem 1rem #252525;
+    float: left;
 }

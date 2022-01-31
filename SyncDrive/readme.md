@@ -23,7 +23,7 @@ And the only thing remaining is execute the setup.py with sudo:
 
 Type **1** to install the program, and it will be installed after a few seconds
 
-If the installation fails because you don't have installed or configured **rclone** follow the steps of the **rclone.md** file
+If the installation fails because you don't have installed or configured **rclone** follow the steps of the [rclone.md](https://github.com/Kiu1812/kiu1812.github.io/blob/main/SyncDrive/rclone.md) file
 
 ## Create files and folders
 

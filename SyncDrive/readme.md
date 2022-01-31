@@ -11,8 +11,17 @@ FIrst download the [setup.zip](https://kiu1812.github.io/syncDrive/setup.zip) fi
 
 >wget https://kiu1812.github.io/SyncDrive/setup.zip
 
+Then extract the downloaded file and enter to the folder with:
 
+>unzip setup.zip
 
+>cd setup
+
+And the only thing remaining is execute the setup.py with sudo:
+
+>sudo python3 setup.py
+
+Type **1** to install the program, and it will be installed after a few seconds
 
 ## Create files and folders
 

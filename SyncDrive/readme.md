@@ -5,7 +5,7 @@ The command line application will help you to sync your files and your Google Dr
 
 
 
-# How to install
+## How to install
 
 FIrst download the [setup.zip](https://kiu1812.github.io/syncDrive/setup.zip) file from the official github repository. You can just click the file name here or put the following command in command line:
 

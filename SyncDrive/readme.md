@@ -23,6 +23,8 @@ And the only thing remaining is execute the setup.py with sudo:
 
 Type **1** to install the program, and it will be installed after a few seconds
 
+If the installation fails because you don't have installed or configured **rclone** follow the steps of the **rclone.md** file
+
 ## Create files and folders
 
 The file explorer is accessible using the button in left corner of the navigation bar. You can create a new file by clicking the **New file** button in the file explorer. You can also create folders by clicking the **New folder** button.

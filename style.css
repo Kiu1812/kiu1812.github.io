@@ -1,13 +1,28 @@
+:root {
+    --bg-color: #1E2022;
+    --bg-color-2: #4d4a4a;
+}
 body {
-    background: #1E2022;
+    background: var(--bg-color);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     margin: 0;
-    padding: 0;
+    padding: 0;/*
+    animation:
+        myfilter 5s step-end infinite*/
 }
+/*
+@keyframes myfilter {
+    0% {
+        filter: hue-rotate(0deg)
+    }
+    100% {
+        filter: hue-rotate(180deg)
+    }
+}*/
 
 body::-webkit-scrollbar {
     width: 10px;
@@ -28,133 +43,55 @@ body::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 
-#title {
-    font-size: 2rem;
-}
-
-
-#sectionBG {
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-color: #131313;
-    overflow: hidden;
-    z-index: -3;
-    top: 0;
-    left: 0;
-}
-.layer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 140px;
-    height: 250vh;
-    background-color: #fff;
-    box-shadow: inset -10px 0 40px rgba(0, 0, 0, 1),
-    inset 10px 0 40px rgba(0, 0, 0, 1),
-    inset -10px 0 10px rgba(255, 255, 255, 0.25),
-    inset 10px 0 10px rgba(255, 255, 255, 0.25),
-    0 0 50px rgba(0, 0, 0, 1);
-}
-@keyframes animate {
-    0%{
-        background-position: 0 0;
-    }
-    100%{
-        background-position: 35px 35px;
-    }
-}
-@keyframes animate_two {
-    0%{
-        background-position: 35px 35px;
-    }
-    100%{
-        background-position: 0 0;
-    }
-}
-.layer.layer1 {
-    background: #222 radial-gradient(#6dff73 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -50%) rotate(45deg);
-    z-index: 11;
-    animation: animate 2s linear infinite;
-}
-.layer.layer2 {
-    background: #222 radial-gradient(#db0aff 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -38%) rotate(45deg);
-    z-index: 3;
-    animation: animate_two 2s linear infinite;
-}
-.layer.layer3 {
-    background: #222 radial-gradient(#03a9f4 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -62%) rotate(45deg);
-    z-index: 3;
-    animation: animate_two 2s linear infinite;
-}
-
-.layer.layer4 {
-    background: #222 radial-gradient(#ffc107 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    z-index: 12;
-    animation: animate_two 2s linear infinite;
-}
-.layer.layer5 {
-    background: #222 radial-gradient(#e91e63 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -38%) rotate(-45deg);
-    z-index: 10;
-    animation: animate 2s linear infinite;
-}
-.layer.layer6 {
-    background: #222 radial-gradient(#0f0 9px, #000 9px, #000 13px, transparent 13px);
-    background-size: 35px 35px;
-    transform: translate(-50%, -62%) rotate(-45deg);
-    z-index: 10;
-    animation: animate 2s linear infinite;
-}
-
 
 
 #headerSection {
     width: inherit;
     height: inherit;
     position: relative;
-}
-
-#header-div{
-    width: inherit;
-    height: inherit;
-    position: relative;
-}
-
-#header {
-    display: flex;
-    width: inherit;
-    height: inherit;
-}
-
-.container {
-    margin: auto;
-    border-radius: 2rem;
-    border: 1px solid #1E2022;
-    box-shadow: -.5rem -.5rem .5rem #353636, .5rem .5rem .5rem #3f3f3f;
-    background-color: rgba(0, 0, 0, .3);
-    backdrop-filter: blur(5px);
-    overflow: hidden;
-    outline: 1px solid white;
-}
-
-#blur {
-    backdrop-filter: blur(5px);
-    padding: 15rem 20rem 15rem 20rem;
     
 }
 
+#header-content {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+    font-family: 'Acme';
+    letter-spacing: 2rem;
+}
+
+#header-content>div {
+    width: fit-content;
+}
+
+.typewriter h1 {
+    width: 95%;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    animation:
+        typing 1.5s steps(8, end), forwards,
+        blink-caret .75s step-end infinite
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 95%}
+}
+  
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+}
+
 .content {
-    background: #664b50;
+    background: var(--bg-color-2);
     height: 1000px;
     position: relative;
     margin: 0;
@@ -162,11 +99,17 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: -2;
 }
 
+.content > div {
+    margin-top: 50px;
+    margin-left: 10px;
+}
+
 .curve {
     position: absolute;
     height: 225px;
     width: 100%;
     bottom: 0;
+    
 }
 
 .curve::before {
@@ -174,9 +117,10 @@ body::-webkit-scrollbar-thumb:hover {
     display: block;
     position: absolute;
     border-radius: 100% 50%;
+    border-left: 0;
     width: 55%;
     height: 100%;
-    background-color: #664b50;
+    background-color: var(--bg-color-2);
     transform: translate(85%, 60%);
     z-index: 0;
 }
@@ -187,7 +131,7 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: 100% 50%;
     width: 55%;
     height: 100%;
-    background-color: #1E2022;
+    background-color: var(--bg-color);
     transform: translate(-4%, 40%);
     z-index: -1;
 }

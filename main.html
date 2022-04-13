@@ -8,9 +8,16 @@
   <link rel="stylesheet" href="style.css">
   <link href='https://fonts.googleapis.com/css?family=Acme' rel='stylesheet'>
 </head>
-<body>
-  <section id="headerSection">
-    
+<body class="dark">
+  <section id="headerSection" class="dark">
+    <div class="light changer-main">
+      <div class="changer">
+          <span class="changer-light changer-colors"></span>
+          <button class="light" onclick="change()"></button>
+          <span class="changer-dark changer-colors"></span>
+      </div>
+  </div>
+
     <div class="curve"></div>
     <div id="header-content" class="typewriter">
       <div>
@@ -28,5 +35,6 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript" src="script.js"></script>
 </body>
 </html>

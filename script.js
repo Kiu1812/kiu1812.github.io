@@ -1,4 +1,4 @@
-let actualTheme = "light"
+let actualTheme = "dark"
 function change() {
     console.log("test")
     if (actualTheme === "light") {

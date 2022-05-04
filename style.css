@@ -1,13 +1,27 @@
+* {
+    pointer-events: none;
+}
+
+a {
+    pointer-events: visible;
+}
+
 .light {
     --bg-color: rgb(218, 218, 218);
     --bg-color-2: #b6b5b5;
+    --content-bg: rgb(173, 173, 173);
     --text-color: #111;
+    --shadow-color-1: #000;
+    --shadow-color-2: #fff;
 }
 
 .dark {
     --bg-color: #141616;
     --bg-color-2: #2e3133;
+    --content-bg: #353636;
     --text-color: #fff;
+    --shadow-color-1: #fff;
+    --shadow-color-2: #000;    
 }
 
 body {
@@ -60,6 +74,7 @@ body::-webkit-scrollbar-thumb:hover {
     align-items: center;
     justify-content: center;
     padding: 0;
+    pointer-events: visible;
 }
 
 .changer span.changer-colors {
@@ -67,6 +82,7 @@ body::-webkit-scrollbar-thumb:hover {
     width: 20px;
     height: 20px;
     border-radius: 100%;
+    pointer-events: visible;
 }
 
 .changer button {
@@ -80,6 +96,7 @@ body::-webkit-scrollbar-thumb:hover {
     z-index: 1;
     transition: .5s;
     cursor: pointer;
+    pointer-events: visible;
 }
 
 .changer button.light {
@@ -169,6 +186,63 @@ body::-webkit-scrollbar-thumb:hover {
 .content > div {
     margin-top: 50px;
     margin-left: 10px;
+}
+
+#sub-Content {
+    margin: auto;
+    margin-top: 130px;
+    width: 90%;
+    height: 80%;
+    border-radius: 50px;
+    background-color: var(--content-bg);
+    box-shadow: 5px 5px 5px var(--shadow-color-1), -5px -5px 5px var(--shadow-color-1);
+    display: flex;
+}
+
+.projectCover {
+    margin: auto;
+    width: 25%;
+    height: 80%;
+    background-color: var(--bg-color-2);
+    box-shadow: 5px 5px 5px var(--shadow-color-1), -5px -5px 5px var(--shadow-color-1);
+    border-radius: 30px;
+}
+
+.projectInside {
+    display: block;
+    width: 80%;
+    height: 35%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 30px;
+    background-color: var(--bg-color);
+    box-shadow: 5px 5px 5px var(--shadow-color-2), -5px -5px 5px var(--shadow-color-2);
+    padding: 15px;
+}
+
+.projectImage {
+    display: flex;
+    width: 80%;
+    height: 35%;
+    margin: auto;
+    margin-top: 10%;
+    border-radius: 30px;
+    background-color: var(--bg-color);
+    box-shadow: 5px 5px 5px var(--shadow-color-2), -5px -5px 5px var(--shadow-color-2);
+    padding: 15px;
+    
+}
+
+.projectInside > img {
+    width: 100%;
+    height: 100%;
+}
+
+.projectInside > p {
+    width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .curve {
